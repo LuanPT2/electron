@@ -1,6 +1,7 @@
 
 const dayjs = require('dayjs');
-var uuidv4 = require('uuid/v4');
+const {v4: uuid} = require('uuid');
+var path = require('path')
 
 const upload = (subfolder, file) => {
   if(file == null) {
@@ -8,10 +9,11 @@ const upload = (subfolder, file) => {
   }
 
   const today = dayjs(new Date()).format("YYYYMMDD");
-  var fileName = uuidv4() + ".";
+  const pathfile = subfolder + "/" + today + "/";
+  var fileName = uuid() +  path.extname(file.name);
 
-  file.mv('/data/attach_file/' + subfolder + "/" + today + "/" +  fileName);
+  file.mv('/data/attach_file/'  + pathfile +  fileName);
+  return pathfile + fileName;
 }
-
 
 module.exports = upload;

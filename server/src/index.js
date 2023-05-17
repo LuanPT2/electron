@@ -17,7 +17,7 @@ app.use(fileUpload({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', (req, res) => {
+app.get('/files/', (req, res) => {
   res.send('Hello World!')
 })
 
