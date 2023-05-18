@@ -1,4 +1,21 @@
 const User = require('../models/user.model');
+const fileControl = require('../utils/file.control');
+
+const getUser = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await User.find(id);
+
+        res.send({
+            statusCode: 200,
+            statusMessage: 'Ok',
+            message: 'Successfully retrieved the user.',
+            data: user,
+        });
+    } catch (err) {
+        res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });
+    }
+};
 
 const getUsers = async (req, res) => {
     try {
@@ -16,12 +33,15 @@ const getUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    const { firstName, lastName, age } = req.body;
-    if (!firstName || !firstName.trim() || !lastName || !lastName.trim() || age == null || age < 0)
-        return res.status(400).send({ statusCode: 400, statusMessage: 'Bad Request', message: null, data: null });
-
+    const { account, password, phone, name } = req.body;
     try {
-        const user = new User(firstName, lastName, age);
+        var avatarpath = null;
+        if(req.files) {
+            let file = req.files.avatar;
+            avatarpath = fileControl.uploadFile("/avatar", file);
+        }
+
+        const user = new User(account, password, phone, name, avatarpath);
         await user.save();
 
         res.status(201).send({
@@ -42,12 +62,26 @@ const addUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.params.id;
-    const { firstName, lastName, age } = req.body;
-    if (!firstName || !firstName.trim() || !lastName || !lastName.trim() || age == null || age < 0)
-        return res.status(400).send({ statusCode: 400, statusMessage: 'Bad Request', message: null, data: null });
-
+    const { account, password, phone, name } = req.body;
     try {
-        await User.findByIdAndUpdate(id, req.body);
+        const user = await User.find(id);
+        if(user == null) {
+            return res.status(200).send({
+                statusCode: 403,
+                statusMessage: 'Resource not fould',
+                message: null,
+                data: null,
+            });
+        }
+        var avatarpath = null;
+        if(req.files) {
+            let file = req.files.avatar;
+            avatarpath = fileControl.uploadFile("/avatar", file);
+            req.body.avatar = avatarpath;
+            fileControl.deletefile(user[0].avatar);
+        }
+
+        await User.update(id, req.body);
 
         return res.status(202).send({
             statusCode: 202,
@@ -56,13 +90,7 @@ const updateUser = async (req, res) => {
             data: null,
         });
     } catch (err) {
-        console.log(err);
-        res.status(500).send({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
-            message: null,
-            data: null,
-        });
+        res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null,});
     }
 };
 
@@ -70,7 +98,7 @@ const deleteUser = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await User.findByIdAndDelete(id);
+        await User.delete(id);
 
         res.send({
             statusCode: 200,
@@ -79,16 +107,12 @@ const deleteUser = async (req, res) => {
             data: null,
         });
     } catch (err) {
-        res.status(500).send({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
-            message: null,
-            data: null,
-        });
+        res.status(500).send({statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null});
     }
 };
 
 module.exports = {
+    getUser,
     getUsers,
     addUser,
     updateUser,
