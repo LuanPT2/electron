@@ -1,10 +1,11 @@
 const User = require('../models/user.model');
 const fileControl = require('../utils/file.control');
+var bcrypt = require("bcryptjs");
+
 
 const getUser = async (req, res) => {
-    const id = req.params.id;
     try {
-        const user = await User.find(id);
+        const user = await User.filter({id:req.params.id});
 
         res.send({
             statusCode: 200,
@@ -19,7 +20,7 @@ const getUser = async (req, res) => {
 
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.filter({});
 
         res.send({
             statusCode: 200,
@@ -41,7 +42,7 @@ const addUser = async (req, res) => {
             avatarpath = fileControl.uploadFile("/avatar", file);
         }
 
-        const user = new User(account, password, phone, name, avatarpath);
+        const user = new User(account, bcrypt.hashSync(password, 10), phone, name, avatarpath, "USER");
         await user.save();
 
         res.status(201).send({
@@ -64,7 +65,7 @@ const updateUser = async (req, res) => {
     const id = req.params.id;
     const { account, password, phone, name } = req.body;
     try {
-        const user = await User.find(id);
+        const user = await User.filter({id:req.params.id});
         if(user == null) {
             return res.status(200).send({
                 statusCode: 403,
@@ -73,6 +74,16 @@ const updateUser = async (req, res) => {
                 data: null,
             });
         }
+
+        if(req.userInfo.account !=  account && "ADMIN" != req.userInfo.role) {
+            return res.status(200).send({
+                statusCode: 401,
+                statusMessage: 'No pemission!',
+                message: null,
+                data: null,
+            });
+        }
+
         var avatarpath = null;
         if(req.files) {
             let file = req.files.avatar;
@@ -81,6 +92,7 @@ const updateUser = async (req, res) => {
             fileControl.deletefile(user[0].avatar);
         }
 
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
         await User.update(id, req.body);
 
         return res.status(202).send({

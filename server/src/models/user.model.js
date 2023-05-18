@@ -1,32 +1,35 @@
 const pool = require('../databases/mysql.db');
 
 class User {
-    constructor(account, password, phone, name, avatar) {
+    constructor(account, password, phone, name, avatar, role) {
         this._id = null;
         this._account = account;
         this._password = password;
         this._phone = phone;
         this._name = name;
         this._avatar = avatar;
+        this._role = role;
         this._registDt = null;
     }
 
-    static async find(id) {
-        const sql = `SELECT * FROM users WHERE id = "${id}"`;
-        const [rows, fields] = await pool.execute(sql);
+    static async filter(options) {
+        var sql = `SELECT * FROM users WHERE 1 =1 `
+        if(options.id != null) {
+            sql = sql + `and id = "${options.id}"`;
+        }
+        if(options.account != null) {
+            sql = sql + `and account = "${options.account}"`;
+        }
+        if(options.name != null) {
+            sql = sql + `and name = %"${options.name}"%`;
+        }
 
+        const [rows, fields] = await pool.execute(sql);
         return rows;
     }
 
-    static async find() {
-        const sql = 'SELECT * FROM users';
-        const [rows, fields] = await pool.execute(sql);
-
-        return rows;
-    }
-  
     async save() {
-        const sql = `INSERT INTO users (account, password, phone, name, avatar) VALUES ("${this.account}", "${this.password}", "${this.phone}", "${this.name}", "${this.avatar}")`;
+        const sql = `INSERT INTO users (account, password, phone, name, avatar, role) VALUES ("${this.account}", "${this.password}", "${this.phone}", "${this.name}", "${this.avatar}", "${this.role}")`;
         await pool.execute(sql);
     }
 
@@ -64,6 +67,10 @@ class User {
         return this._avatar;
     }
 
+    get role() {
+        return this._role;
+    }
+
     get registDt() {
         return this._registDt;
     }
@@ -91,6 +98,10 @@ class User {
 
     set avatar(avatar) {
         this._avatar = avatar;
+    }
+
+    set role(role) {
+        this._role = role;
     }
 
     set registDt(registDt) {

@@ -5,8 +5,6 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
-
-
 // enable files upload
 app.use(fileUpload({createParentPath: true}));
 app.use(bodyParser.json());

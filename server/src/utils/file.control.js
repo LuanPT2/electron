@@ -25,6 +25,10 @@ const deletefile = async(filePath) => {
   
   //fs.unlinkSync(filePath)
   // delete file named 'sample.txt'
+  if(!fs.existsSync('/data/attach_file/' + filePath)) {
+    return;
+  }
+
   fs.unlink('/data/attach_file/' + filePath, function (err) {
     if (err) throw err;
     // if no error, file has been deleted successfully
