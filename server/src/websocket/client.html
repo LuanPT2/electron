@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+#result {
+  background-color: rgb(255, 255, 255);
+  margin-top: 6px;
+  border-radius: 5px;
+  padding: 5px; 
+  height: 425px;
+}
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #73AD21;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 60%;
+  height: 700px;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <form id="input-form">
+            <label for="message">Enter Message:</label>
+            <textarea type="text" id="message" name="message" placeholder="Write something.." style="height:100px"></textarea><br><br>
+            <input type="submit" value="Send">
+        </form>
+        <label for="message">Message recived:</label>
+        <textarea type="text" id="result" name="result" disabled style="height:430px"></textarea>
+    </div>
+</body>
+
+<script>
+    const webSocket = new WebSocket('ws://localhost:8888/');
+    webSocket.onmessage = (event) => {
+      console.log(event)
+      document.getElementById('result').innerHTML += 
+        'Server: ' + event.data + '\n';
+    };
+    webSocket.addEventListener("open", () => {
+      console.log("We are connected");
+    });
+    function sendMessage(event) {
+      var inputMessage = document.getElementById('message')
+      webSocket.send(inputMessage.value)
+      inputMessage.value = ""
+      event.preventDefault();
+    }
+    document.getElementById('input-form').addEventListener('submit', sendMessage);
+</script>
+
+</html>
