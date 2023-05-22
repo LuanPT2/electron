@@ -23,6 +23,8 @@ class User {
         if(options.name != null) {
             sql = sql + `and name = %"${options.name}"%`;
         }
+        
+        sql = sql + ` ORDER BY regist_dt DESC limit 1`
 
         const [rows, fields] = await pool.execute(sql);
         return rows;
