@@ -1,0 +1,97 @@
+.my-checkbox {
+  position: relative;
+  &__input {
+    display: none;
+  }
+
+  span {
+    font-size: pxToRem(16);
+    color: $color-input;
+  }
+
+  &__label {
+    margin-top: pxToRem(2);
+    margin-left: pxToRem(26);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: pxToRem(18);
+      width: pxToRem(18);
+      background-image: url('../../assets/image/checkbox_big_off.svg');
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .disabled {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: pxToRem(18);
+      width: pxToRem(18);
+      background-image: url('../../assets/image/checkbox_big_off.svg');
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.3;
+    }
+    span {
+      opacity: 0.3;
+    }
+  }
+
+  &--checked {
+    .my-checkbox__label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: pxToRem(18);
+      width: pxToRem(18);
+      background-image: url('../../assets/image/checkbox_big_on.svg');
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__label--disable {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: pxToRem(18);
+      width: pxToRem(18);
+      border: pxToRem(1) solid red;
+    }
+  }
+
+  &.checkbox-small {
+    span {
+      font-size: pxToRem(15);
+    }
+    .my-checkbox__label {
+      margin-top: 0;
+
+      &::before {
+        height: pxToRem(15);
+        width: pxToRem(15);
+        background-image: url('../../assets/image/checkbox_off.svg');
+      }
+    }
+    &.my-checkbox--checked {
+      .my-checkbox__label::after {
+        height: pxToRem(15);
+        width: pxToRem(15);
+        background-image: url('../../assets/image/checkbox_on.svg');
+      }
+    }
+  }
+}

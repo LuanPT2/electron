@@ -1,0 +1,217 @@
+.login-page {
+  position: relative;
+
+  .icon_logo {
+    width: 104px;
+    height: 27px;
+    margin-left: 28px;
+    margin-top: 19px;
+    position: absolute;
+  }
+
+  .form-wrapper {
+    background: $white;
+    border-radius: pxToRem(5);
+    display: flex;
+    height: 100vh;
+
+    &__box {
+      padding-left: 14.063vw;
+      padding-top: 13.229vw;
+      padding-right: 15.052vw;
+      width: 50%;
+      display: inline-block;
+
+      h4 {
+        font-size: 1.875vw;
+        line-height: 36px;
+        color: $color-chart;
+        font-weight: $semiBold;
+        margin-bottom: 30px;
+      }
+
+      p {
+        font-size: 0.833vw;
+        line-height: 19px;
+        color: $color-text;
+        font-weight: $semiBold;
+        margin-bottom: 13px !important;
+      }
+    }
+
+    .login-wrapper-input {
+      width: 100%;
+      margin-bottom: 16px;
+      position: relative;
+
+      .input__wrapper {
+        input {
+          font-size: pxToRem(14);
+          height: 54px;
+
+          // padding-left: pxToRem(35);
+          &::placeholder {
+            font-size: pxToRem(14);
+          }
+        }
+      }
+
+      img {
+        width: 21px !important;
+        height: 21px !important;
+        top: 15px !important;
+      }
+    }
+
+    .remember-me {
+      label {
+        font-size: 16px;
+        color: $color-text;
+        font-weight: $regular;
+      }
+    }
+
+    .button-login {
+      display: block;
+      margin-top: 3.646vw;
+      width: 100%;
+      height: 45px;
+      border-radius: 12px;
+      background-color: #7086ff;
+    }
+
+    &__intro {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      background: url('../../../../assets/image/bg_desktop_login.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position-x: right;
+
+      img {
+        width: 228px;
+        height: 228px;
+        margin-top: 9.375vw;
+        margin-left: 6.729vw;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .icon_logo {
+      display: none;
+    }
+
+    .form-wrapper {
+      display: block;
+
+      &__box {
+        padding: 41.25vw 23.958vw 0;
+        width: 100%;
+
+        h4 {
+          font-size: 4.5vw;
+        }
+
+        p {
+          font-size: 2vw;
+        }
+      }
+
+      &__intro {
+        width: 100%;
+        background: url('../../../../assets/image/bg_table_login.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-position-y: 0;
+        height: 33.03vw;
+
+        img {
+          position: relative;
+          top: 11.927vw;
+          margin-top: 0;
+          width: 29.688vw;
+          height: 29.688vw;
+        }
+      }
+
+      .login-wrapper-input {
+        .input__wrapper {
+          input {
+            height: 6.75vw;
+            font-size: 2.083vw;
+          }
+
+          .input__box__icon-left {
+            width: 2.5vw;
+            height: 2.5vw;
+            top: 1.875vw !important;
+          }
+        }
+      }
+
+      .button-login {
+        margin-top: 8.75vw;
+        height: 5.859vw;
+      }
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    .form-wrapper {
+      &__box {
+        padding: 66.111vw 5.556vw 0;
+        width: 100%;
+
+        h4 {
+          font-size: 7.778vw;
+          margin-top: 0 !important;
+        }
+
+        p {
+          font-size: 4.444vw;
+        }
+      }
+
+      &__intro {
+        height: 54.167vw;
+        background-position-y: 0;
+        background: url('../../../../assets/image/bg_intro_mobile.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        img {
+          width: 43.889vw;
+          height: 43.889vw;
+          top: 25.333vw;
+        }
+      }
+
+      .login-wrapper-input {
+        .input__wrapper {
+          input {
+            height: 11.389vw;
+            font-size: 3.889vw;
+          }
+
+          .input__box__icon-left {
+            width: 3.889vw !important;
+            height: 3.889vw !important;
+            top: 3.333vw !important;
+          }
+        }
+      }
+
+      .button-login {
+        width: 100%;
+        margin-left: 0;
+        height: 12.5vw;
+      }
+    }
+  }
+}

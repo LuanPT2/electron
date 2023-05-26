@@ -1,0 +1,260 @@
+.btn {
+  min-width: pxToRem(80);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: pxToRem(6);
+  font-size: pxToRem(16);
+
+  img {
+    margin-right: 5px;
+  }
+
+  &.loading {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  // FIXME: update when have new UI state from design
+  &:active {
+    // opacity: 0.7;
+    background-color: #6a6fab !important;
+    color: #fff !important;
+  }
+
+  &:focus-visible {
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    // opacity: 0.5;
+    // cursor: auto;
+    background-color: rgba($color: #e5e6e9, $alpha: 0.5);
+    border-color: #e5e6e9;
+    color: #1d1d1d;
+  }
+
+  &:hover {
+    background-color: #9fa6f2;
+    color: $white;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    // @include boxShadow(0, 0, pxToRem(3), 0, $dark);
+    color: $white;
+
+    &:focus-visible {
+      background-color: $color-primary;
+      color: $white;
+    }
+  }
+
+  &--upload {
+    background-color: $color-upload;
+    // @include boxShadow(0, 0, pxToRem(3), 0, $dark);
+    color: $white;
+
+    &:focus-visible {
+      background-color: $color-upload;
+      color: $white;
+    }
+
+    &:disabled,
+    &[disabled] {
+      border: 0;
+      background-color: $bg-action-delete;
+      color: $color-title !important;
+    }
+  }
+
+  &--search,
+  &--register {
+    background-color: #7086ff;
+    // @include boxShadow(0, 0, pxToRem(3), 0, $dark);
+    color: $white;
+
+    &:focus-visible {
+      background-color: #7086ff;
+      color: $white;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-secondary;
+    color: $white;
+
+    &:focus-visible {
+      background-color: $color-secondary;
+      color: $white;
+    }
+  }
+
+  &--gray {
+    background-color: $color-gray;
+    color: $white;
+
+    &:focus-visible {
+      background-color: $color-gray;
+      color: $white;
+    }
+  }
+
+  &-outline-secondary {
+    background-color: #fff;
+    border: 1px solid #e5e6e9;
+    color: $color-title;
+
+    &:hover {
+      color: $white;
+      background-color: $bg-active-pagination;
+      border-color: $bg-active-pagination;
+    }
+  }
+
+  &-inprogess-mob {
+    height: 27px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #eaeef6;
+    color: #787cf7;
+
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+
+    &:hover {
+      color: #787cf7;
+    }
+
+    &:focus-visible {
+      background-color: #eaeef6;
+      border-color: #eaeef6;
+    }
+  }
+
+  &-approve {
+    height: 27px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: $bg-approve;
+    color: $green;
+
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+
+    &:hover {
+      color: $green;
+    }
+
+    &:focus-visible {
+      background-color: $bg-approve;
+      border-color: $green;
+    }
+  }
+
+  &-action {
+    height: 27px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: $bg-action;
+    color: $color-title;
+    justify-content: space-around;
+    &-delete {
+      background-color: $bg-action-delete;
+    }
+
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+
+    &:hover {
+      background-color: $bg-active-pagination;
+      color: $white;
+    }
+
+    &:focus-visible {
+      background-color: $bg-action;
+      border-color: $color-title;
+    }
+  }
+
+  &.green.btn-primary {
+    background-color: $green;
+    border-color: $green;
+
+    &:focus-visible {
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+
+  &.black.btn-primary {
+    background-color: $steal-transparent;
+    border-color: $steal-transparent;
+
+    &:focus-visible {
+      background-color: $steal-transparent;
+      border-color: $steal-transparent;
+    }
+  }
+
+  &.governor.btn-primary {
+    background-color: $blue;
+    border-color: $blue;
+
+    &:focus-visible {
+      background-color: $blue;
+      border-color: $blue;
+    }
+  }
+
+  &.red.btn-primary {
+    background-color: $red;
+    border-color: $red;
+
+    &:focus-visible {
+      background-color: $red;
+      border-color: $red;
+    }
+  }
+
+  &.reject.btn-primary {
+    background-color: $cherry;
+    border-color: $cherry;
+
+    &:focus-visible {
+      background-color: $cherry;
+      border-color: $cherry;
+    }
+  }
+
+  &.btn-small {
+    padding: pxToRem(3);
+    min-width: pxToRem(60);
+    line-height: 1.2;
+  }
+
+  &.btn-change-work {
+    width: 100%;
+    min-width: 30px;
+  }
+
+  @media screen and(max-width: 500) {
+    font-size: pxToRem(14);
+  }
+}

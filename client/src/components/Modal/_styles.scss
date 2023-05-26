@@ -1,0 +1,184 @@
+.modal-backdrop {
+  z-index: 999999;
+}
+
+.modal {
+  z-index: 999999;
+
+  &.custom-modal {
+    .modal-dialog {
+      height: 100%;
+      margin: 0;
+      max-width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      // &.modal-md {
+      //   max-width: pxToRem(400);
+      // }
+
+      .modal-content {
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 0 !important;
+        border-radius: pxToRem(10);
+        max-width: pxToRem(450);
+        width: 40%;
+        @media screen and (max-width: 680px) {
+          width: 90%;
+        }
+        .modal-header {
+          display: flex;
+          position: relative;
+          // top: pxToRem(-2);
+          width: calc(100%);
+          // left: pxToRem(-0.5);
+          padding: 0;
+          padding-top: pxToRem(40);
+          border-bottom: none;
+
+          .icon-close {
+            width: pxToRem(20);
+            height: pxToRem(20);
+            position: absolute;
+            right: pxToRem(20);
+            top: pxToRem(15);
+            cursor: pointer;
+            // margin-right: pxToRem(7);
+          }
+
+          .btn-close {
+            // margin-right: pxToRem(5);
+            display: none;
+          }
+
+          .modal-title {
+            width: 100%;
+            font-size: pxToRem(20);
+            font-weight: $bold;
+            line-height: pxToRem(27);
+            color: #000;
+            word-break: keep-all;
+          }
+        }
+
+        .modal-body {
+          white-space: pre-line;
+          background-color: $white;
+          margin: pxToRem(40) 0;
+          padding: 0;
+          line-height: 1.38;
+
+          // div {
+          //   height: pxToRem(450) !important;
+          // }
+          p {
+            font-size: pxToRem(16);
+            line-height: pxToRem(22);
+            letter-spacing: pxToRem(-0.32);
+            text-align: center;
+            color: $color-input;
+          }
+        }
+
+        .modal-footer {
+          // justify-content: center;
+          border-top: 0;
+          padding: 0;
+
+          button {
+            width: 100%;
+            height: pxToRem(50);
+            border-radius: 0;
+            border-bottom-left-radius: pxToRem(10);
+            border-bottom-right-radius: pxToRem(10);
+            border-color: transparent;
+            font-size: pxToRem(16);
+            font-weight: $bold;
+          }
+
+          .btn--right {
+            background-color: $color-primary;
+            border-bottom-left-radius: 0;
+            border-color: transparent;
+            color: $white;
+          }
+
+          .btn--left {
+            background-color: $color-placeholder-input;
+            border-bottom-right-radius: 0;
+          }
+
+          .btn-info {
+            background-color: $color-primary;
+            border: none;
+            color: $white;
+          }
+
+          .double-btn {
+            display: flex;
+            width: 100%;
+
+            .my-btn {
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+
+              &--left {
+                border-bottom-right-radius: pxToRem(10);
+              }
+
+              &--right {
+                border-bottom-left-radius: pxToRem(10);
+                background-color: $white;
+                border-top: pxToRem(1) solid $blue;
+
+                p {
+                  color: $blue;
+                }
+              }
+            }
+          }
+
+          .my-btn {
+            border-bottom-left-radius: pxToRem(10);
+            border-bottom-right-radius: pxToRem(10);
+            padding: pxToRem(12) 0;
+            line-height: 1.5;
+            font-size: pxToRem(18);
+            font-weight: $medium;
+          }
+        }
+
+        .modal-footer > * {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop.show {
+  background-color: rgba(39, 39, 41, 0.3);
+  opacity: 1;
+
+  &:nth-of-type(4) {
+    z-index: 9999;
+  }
+}
+
+.modal_confirm_dum {
+  z-index: 9999;
+}
+
+.modal-popup-schedule {
+  .modal-content {
+    max-width: pxToRem(3000) !important;
+    width: 60% !important;
+
+    .modal-body {
+      padding: 0 10px !important;
+    }
+  }
+}

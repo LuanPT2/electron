@@ -1,0 +1,142 @@
+.input {
+  &__label {
+    margin-bottom: pxToRem(5);
+  }
+
+  &__box {
+    position: relative;
+
+    img {
+      width: pxToRem(15);
+    }
+
+    input,
+    textarea {
+      height: pxToRem(38);
+      padding: pxToRem(12) pxToRem(13);
+      border: 1px solid $border-calendar;
+      border-radius: pxToRem(5);
+      font-size: 14px;
+      line-height: pxToRem(22);
+      color: $color-input;
+      border-radius: 6px;
+
+      &:focus {
+        outline: 0;
+        border-color: $border-input-focus;
+        box-shadow: 0 0 0 pxToRem(1) $border-input-focus;
+      }
+
+      &::placeholder {
+        color: $color-input;
+        font-weight: $regular;
+        font-size: pxToRem(14);
+        line-height: 1.5;
+        opacity: 0.5;
+      }
+
+      &:disabled {
+        // background-color: rgba($color: #e5e6e9, $alpha: 0.5);
+        // color: #7d7d7d !important;
+        color: #7d7d7d !important;
+        border: solid 1px rgba($color: #7d7d7d, $alpha: 0.3) !important;
+        background-color: #fff;
+      }
+
+      &:read-only {
+        border-color: $border-input-read-only;
+        color: $color-text;
+      }
+
+      &.is-invalid {
+        border-color: $border-input-invalid !important;
+
+        &:focus {
+          outline: 0;
+          border-color: $border-input-invalid;
+          box-shadow: 0 0 0 pxToRem(1) $border-input-invalid;
+        }
+      }
+
+      @media screen and (max-width: 1536px) {
+        &::placeholder {
+          font-size: pxToRem(14);
+        }
+      }
+    }
+
+    &__icon-left {
+      right: pxToRem(13);
+      width: pxToRem(19);
+      height: pxToRem(19);
+      top: pxToRem(10) !important;
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+    }
+  }
+
+  &__box:has(img.input__box__icon-left) {
+    input {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-right: pxToRem(27.5) !important;
+    }
+  }
+}
+
+.request {
+  font-size: pxToRem(15);
+  font-weight: $medium;
+}
+
+input {
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.file {
+    padding-right: pxToRem(35);
+  }
+}
+
+.cleave-input {
+  font-size: pxToRem(14);
+  height: pxToRem(38);
+  border: pxToRem(1) solid $border-input;
+  border-radius: pxToRem(5);
+  padding: pxToRem(12) pxToRem(13);
+  line-height: pxToRem(22);
+  color: $color-input;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 pxToRem(3) rgba(0, 123, 255, 0.25);
+  }
+
+  &::placeholder {
+    color: $color-input;
+    font-weight: $regular;
+    font-size: pxToRem(18);
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input.cursor-pointer {
+  cursor: pointer !important;
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="228" height="228" viewBox="0 0 228 228">
+    <defs>
+        <linearGradient id="1zqqd5wu2b" x1=".5" y1=".788" x2="3.357" y2=".1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#787cf7"/>
+            <stop offset="1" stop-color="#9fa6f2"/>
+        </linearGradient>
+        <filter id="pkcg95kkca" x="0" y="0" width="228" height="228" filterUnits="userSpaceOnUse">
+            <feOffset dx="3" dy="3"/>
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feFlood flood-color="#3b3e65" flood-opacity=".161"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g data-name="그룹 176">
+        <g style="filter:url(#pkcg95kkca)">
+            <rect data-name="사각형 158" width="180" height="180" rx="20" transform="translate(21.003 21.002)" style="fill:#fff"/>
+        </g>
+        <g data-name="그룹 175">
+            <path data-name="패스 202" d="M72.555 60.8h17.812a4.738 4.738 0 0 1 4.733 4.742v89.591a4.738 4.738 0 0 1-4.738 4.738H72.555a4.738 4.738 0 0 1-4.738-4.738V65.542a4.738 4.738 0 0 1 4.738-4.742z" transform="translate(-9.483 .477)" style="fill:url(#1zqqd5wu2b)"/>
+            <g data-name="2" transform="translate(91.497 61.259)">
+                <path data-name="패스 201" d="M36.184 96.816c.134.438.672 1.379 2.827 1.919 2.586.646 17.384.128 20.321.02a2.132 2.132 0 0 0 1.2-.408 3.772 3.772 0 0 0 1.46-3.2c0-2.555-11.37-15.342-13.876-18.128a2.132 2.132 0 0 1-.492-2.088 2.083 2.083 0 0 1 1.437-1.32c2.155-.718 12.926-5.025 15.8-12.921 0 0 2.155-3.59-2.155-3.59H45.863a2.358 2.358 0 0 0-.674.108c-.418.126-1.148.2-1.148-.82V47.1a2.17 2.17 0 0 0-2.155-2.2H30.662a2.173 2.173 0 0 1-2.062-1.386 2.371 2.371 0 0 1 .364-2.2c1.355-2.032 25.7-32.8 28.468-36.291a2.171 2.171 0 0 0 .394-.768C58.153 3.083 58.793 0 56.371 0 53.378 0 36.5.032 36.5.032s-2.155-.718-6.463 5.025S.958 43.463.958 43.463a3.875 3.875 0 0 0 0 5.084" transform="translate(-.008 -.003)" style="fill:url(#1zqqd5wu2b)"/>
+                <ellipse data-name="타원 13" cx="6.104" cy="6.102" rx="6.104" ry="6.102" transform="translate(60.187 15.098)" style="fill:url(#1zqqd5wu2b)"/>
+            </g>
+        </g>
+    </g>
+</svg>
