@@ -1,0 +1,100 @@
+$font-size-base: 16;
+$border-width-base: 2;
+$viewPort: 360;
+
+/**
+ * Variable for colors
+*/
+$white: #fff;
+$dark: #000;
+$dusty-gray: #9b9b9b;
+$green: #6f9d04;
+$steal-transparent: #212529;
+$blue: #20a8d8;
+$red: #e00000;
+$cherry: #d0021b;
+$hummer: #ccc;
+$dark-gray: #707070;
+$black-opacity-3: rgba(0, 0, 0, 0.3);
+$orange: #fc6915;
+$gray-light: #d7d8df;
+$dove-gray: #666666;
+$blue-color: #0000ff;
+
+$color-input: #272729;
+$color-primary: #808dfc;
+$color-secondary: #314dde;
+$color-upload: #9fa6f2;
+$color-gray: #6c757d;
+$color-light-dd: #dddedf;
+$color-box1: #396c98;
+$color-placeholder-input: #cbcbcb;
+$text-pagination1: #b5b5b5;
+
+// background
+$bg-approve: rgba(111, 157, 4, 0.1);
+$bg-action: rgba(128, 141, 252, 0.1);
+$bg-action-delete: #e5e6e9;
+$bg-info: #377cfd;
+$bg-sidebar: #2f353a;
+$bg-color-page: #e4e5e6;
+$bg-color-form: #f4f4f4;
+
+// border
+$border-table: #e5e6e9;
+$border-input: #bcc0d8;
+$border-input-valid: rgba(0, 123, 255, 0.25);
+$border-input-invalid: #ff4e32;
+$border-color-form: #bbb;
+$border-input-focus: #787cf7;
+$border-input-read-only: rgba(
+  $color: #bcc0d8,
+  $alpha: 0.3,
+);
+/**
+ * Variables for button
+*/
+
+/**
+* Font
+*/
+$Noto-Sans-Font: 'Noto Sans KR';
+$NanumSquare-Font: 'NanumSquare';
+$thin: 100;
+$extraLight: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+$extraBold: 800;
+$black: 900;
+
+/* Variable for input
+*/
+
+// add css date 02/11/2020
+$color-menu: #5d627b;
+$active-menu: #7086ff;
+$bg-sub-link: #434964;
+$color-sub-menu-active: #8effff;
+$border-dashboard: #dce0e9;
+$border-calendar: #bcc0d8;
+$color-dashboad: #272729;
+$bg-main-content: #eaeef6;
+$color-chart: #1d1d1d;
+$border-head-table: #323337;
+$color-breadcrumb: #80838f;
+
+$color-title: #1d1d1d;
+$color-text: #272729;
+$color-text-disabled: #7d7d7d;
+$border-button: #e5e6e9;
+$bg-active-pagination: #787cf7;
+$color-pagination: #9194a5;
+$bg-hover-pagination: rgba(128, 141, 252, 0.1);
+$bg-postcode: #9fa6f2;
+$color-hr-line: rgba(
+  $color: #7083aa,
+  $alpha: 0.3,
+);

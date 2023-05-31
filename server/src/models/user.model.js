@@ -1,9 +1,9 @@
 const pool = require('../databases/mysql.db');
 
 class User {
-    constructor(account, password, phone, name, avatar, role) {
+    constructor(username, password, phone, name, avatar, role) {
         this._id = null;
-        this._account = account;
+        this._username = username;
         this._password = password;
         this._phone = phone;
         this._name = name;
@@ -17,8 +17,8 @@ class User {
         if(options.id != null) {
             sql = sql + `and id = "${options.id}"`;
         }
-        if(options.account != null) {
-            sql = sql + `and account = "${options.account}"`;
+        if(options.username != null) {
+            sql = sql + `and username = "${options.username}"`;
         }
         if(options.name != null) {
             sql = sql + `and name = %"${options.name}"%`;
@@ -31,7 +31,7 @@ class User {
     }
 
     async save() {
-        const sql = `INSERT INTO users (account, password, phone, name, avatar, role) VALUES ("${this.account}", "${this.password}", "${this.phone}", "${this.name}", "${this.avatar}", "${this.role}")`;
+        const sql = `INSERT INTO users (username, password, phone, name, avatar, role) VALUES ("${this.username}", "${this.password}", "${this.phone}", "${this.name}", "${this.avatar}", "${this.role}")`;
         await pool.execute(sql);
     }
 
@@ -49,8 +49,8 @@ class User {
         return this._id;
     }
 
-    get account() {
-        return this._account;
+    get username() {
+        return this._username;
     }
 
     get password() {
@@ -82,8 +82,8 @@ class User {
         return this._id;
     }
 
-    set account(account) {
-        return this._account;
+    set username(username) {
+        return this._username;
     }
 
     set password(password) {

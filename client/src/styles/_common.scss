@@ -1,0 +1,114 @@
+/* #region Generate common classes*/
+
+.positon-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#contentProgram {
+  display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-none {
+  cursor: auto !important;
+}
+
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start-between {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid $dark;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-disabled {
+  color: $color-text-disabled;
+  font-size: pxToRem(14);
+}
+
+.home-icon {
+  object-fit: contain;
+  margin-right: 7px;
+}
+
+.logout-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* #endregion */
+
+/* #region Generate list of classes*/
+
+// font-weight. Ex: class="fw-100" (font-weight: 100)
+
+$fontWeightValue: 100, 200, 300, 400, 500, 600, 700, 800, 900, 950;
+
+@each $val in $fontWeightValue {
+  .fw-#{$val} {
+    font-weight: $val;
+  }
+}
+
+// line-clamp. Ex: class="line-clamp-1" (-webkit-line-clamp: 1)
+
+$lineClampValue: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+
+@each $val in $lineClampValue {
+  .line-clamp-#{$val} {
+    display: -webkit-box;
+    -webkit-line-clamp: $val;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* #endregion */
+.card-title {
+  font-size: 16px;
+  font-weight: $semiBold;
+  line-height: 19px;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  color: #7083aa;
+  background-color: #7083aa;
+  opacity: 0.3;
+}

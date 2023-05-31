@@ -34,7 +34,7 @@ const getUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    const { account, password, phone, name } = req.body;
+    const { username, password, phone, name } = req.body;
     try {
         var avatarpath = null;
         if(req.files) {
@@ -42,7 +42,7 @@ const addUser = async (req, res) => {
             avatarpath = fileControl.uploadFile("/avatar", file);
         }
 
-        const user = new User(account, bcrypt.hashSync(password, 10), phone, name, avatarpath, "USER");
+        const user = new User(username, bcrypt.hashSync(password, 10), phone, name, avatarpath, "USER");
         await user.save();
 
         res.status(201).send({
@@ -63,7 +63,7 @@ const addUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.params.id;
-    const { account, password, phone, name } = req.body;
+    const { username, password, phone, name } = req.body;
     try {
         const user = await User.filter({id:req.params.id});
         if(user == null) {
@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
             });
         }
 
-        if(req.userInfo.account !=  account && "ADMIN" != req.userInfo.role) {
+        if(req.userInfo.username !=  username && "ADMIN" != req.userInfo.role) {
             return res.status(200).send({
                 statusCode: 401,
                 statusMessage: 'No pemission!',

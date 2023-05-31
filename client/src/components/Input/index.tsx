@@ -54,9 +54,6 @@ const Input = ({
         </p>
       )}
       <div className="input__box">
-        <label htmlFor={`${label || label === '' ? label : placeholder}`} className="d-none">{`${
-          label ? label : placeholder
-        }`}</label>
         {isIconLeft && (
           <img
             src={iconLeft}

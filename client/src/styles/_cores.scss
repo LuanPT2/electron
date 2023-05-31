@@ -1,0 +1,738 @@
+body {
+  font-family: 'Noto Sans KR' !important;
+  color: $color-text;
+}
+
+.row-button-file {
+  color: #7086ff !important;
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+.row-button-form {
+  color: #6f9d04 !important;
+  background-color: rgba(111, 157, 4, 0.1) !important ;
+  &:hover {
+    background-color: #6f9d04 !important;
+    color: #fff !important;
+  }
+}
+
+.row-custom {
+  margin: 0;
+  padding: 0;
+}
+
+.react-datepicker-wrapper {
+  input {
+    height: 2.375rem;
+    padding: 0.75rem 0.8125rem;
+    border: 0.0625rem solid $border-input;
+    border-radius: 0.3125rem;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    color: $color-input;
+    width: 100%;
+  }
+}
+
+.react-datepicker {
+  // min-width: 200px;
+
+  &__header {
+    &__dropdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      gap: 30px;
+    }
+  }
+
+  &__month-dropdown {
+    left: 10%;
+    &-container {
+      width: 80px;
+      display: unset;
+    }
+  }
+
+  &__year-dropdown {
+    right: 0;
+    left: auto;
+    &-container {
+      width: 40px;
+      display: unset;
+    }
+
+    @extend .custom-scrollbar;
+  }
+
+  &__year-wrapper {
+    max-width: 100%;
+  }
+
+  &__year-text {
+    width: 31% !important;
+    padding: 5px;
+  }
+}
+
+.react-datepicker:has(.react-datepicker__time-container) {
+  width: 305px;
+}
+
+.react-datepicker--time-only:has(.react-datepicker__time-container) {
+  width: auto !important;
+}
+
+// .react-datepicker__navigation{
+//   position: fixed !important;
+//   top: 12px;
+// }
+.react-datepicker-popper {
+  z-index: 9;
+  // min-width: pxToRem(328) !important;
+}
+
+#contentLocation {
+  display: none;
+}
+
+.text-red {
+  color: #ff4e32;
+}
+
+.modal-memo {
+  .modal-dialog {
+    .modal-body {
+      padding-top: 16px !important;
+      margin: 0 !important;
+    }
+
+    .modal-header {
+      // background-color: #cbcbcb;
+      padding-bottom: pxToRem(8) !important;
+      padding-top: 27px !important;
+
+      .modal-title {
+        position: absolute;
+        top: 10px;
+        left: 0;
+      }
+    }
+  }
+
+  .form-memo {
+    text-align: left;
+    padding: 10px;
+
+    p {
+      text-align: left !important;
+      font-size: 16px;
+      font-weight: $medium;
+    }
+
+    textarea {
+      width: 100%;
+      height: pxToRem(100);
+      padding: pxToRem(5);
+      margin-bottom: pxToRem(5);
+    }
+
+    .area__length {
+      bottom: pxToRem(-9);
+      right: 0;
+    }
+  }
+}
+
+.calendar {
+  svg {
+    position: absolute;
+    right: 25px;
+    top: 30%;
+  }
+}
+
+.note-editing-area {
+  background-color: $white;
+  border-top: pxToRem(1) solid $border-color-form;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  width: 1.5rem;
+}
+
+.react-datepicker__day {
+  &--today {
+    border: 1px solid #216ba5;
+    border-radius: 50%;
+  }
+
+  &--selected {
+    border-radius: 50%;
+    background-color: #216ba5;
+  }
+
+  &:hover {
+    border-radius: 50%;
+  }
+
+  &--keyboard-selected {
+    border-radius: 50%;
+    background-color: #bad9f1;
+    color: $dark;
+  }
+}
+
+.memo {
+  input {
+    background-color: hsl(0, 0%, 100%);
+  }
+
+  table {
+    thead {
+      tr {
+        th {
+          &:nth-of-type(3) {
+            width: 55%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.error-kiosk {
+  table {
+    tr {
+      cursor: unset !important;
+    }
+  }
+}
+
+.wrapper__form {
+  border-top: pxToRem(1) solid $border-color-form;
+  margin-bottom: pxToRem(48);
+
+  .row {
+    background-color: $bg-color-form;
+    margin: 0;
+    white-space: pre-line;
+    border-bottom: pxToRem(1) solid $border-color-form;
+    border-left: pxToRem(1) solid $border-color-form;
+
+    & > div {
+      border-right: pxToRem(1) solid $border-color-form;
+    }
+  }
+}
+
+.row-custom {
+  border: 0 solid $border-color-form !important;
+
+  & > div {
+    padding: 0;
+    border-right: 0 !important;
+
+    &:last-child {
+      .row {
+        border-left: 0 !important;
+      }
+    }
+  }
+}
+
+.col-custom {
+  padding: 0;
+
+  & > div {
+    padding: 0 12px;
+
+    &:first-child {
+      border-bottom: pxToRem(1) solid $border-color-form !important;
+    }
+  }
+}
+
+.border-bottom-under-lg {
+  border: none !important;
+
+  @media screen and (max-width: 991px) {
+    border-bottom: pxToRem(1) solid $border-color-form !important;
+  }
+}
+
+.btn-download-excel {
+  border: 1px solid $border-button;
+  border-radius: 6px;
+  background-color: $white;
+  padding: 2px 5px !important;
+
+  &:hover {
+    color: $color-primary !important;
+    background-color: #e5e6e9 !important;
+    border-color: #e5e6e9 !important;
+  }
+
+  &:first-child {
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.btn.btn-search,
+.btn.btn--primary,
+.btn.btn--upload {
+  min-height: 38px;
+}
+
+.btn.btn-outline-secondary {
+  min-height: 39px;
+
+  @media screen and (max-width: 1199.6px) {
+    min-height: 29px;
+    height: 29px;
+  }
+}
+
+.btn.btn--upload {
+  &:disabled {
+    background-color: #e5e6e9;
+    color: #9194a5;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .calendar-about {
+    display: none;
+  }
+}
+
+.custom-btn {
+  .icon_hover {
+    display: none;
+  }
+
+  &:hover {
+    :first-child {
+      display: none;
+      // margin-left: 10px;
+    }
+
+    .icon_hover {
+      display: block !important;
+    }
+  }
+}
+
+.group-calendar {
+  display: flex;
+  align-items: center;
+
+  .calendar-about {
+    width: 24px;
+  }
+
+  .calendar {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 680px) {
+    display: block;
+
+    .calendar {
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+.main-layout--active-menu {
+  @media screen and (max-width: 1199.6px) {
+    .col-lg-6,
+    .col-lg-2,
+    .col-md-5,
+    .col-md-6,
+    .col-md-4,
+    .col-md-3,
+    .col-md-2,
+    .col-md-9 {
+      &:not(:has(div.wrap-radio)) {
+        width: 100%;
+      }
+    }
+
+    .calendar-about {
+      display: none;
+    }
+
+    .btn-create {
+      width: 40px;
+
+      button {
+        padding: 6px 9px;
+
+        p {
+          display: none;
+        }
+
+        width: 40px;
+      }
+    }
+
+    .box-table {
+      .card-title {
+        display: none !important;
+      }
+
+      .table-responsive {
+        display: none;
+      }
+
+      .list-group {
+        padding: 0;
+        border: 0;
+        display: block;
+
+        .list-group-scrollbar {
+          padding-right: 0;
+        }
+
+        &__content {
+          padding-right: 13px;
+        }
+      }
+    }
+
+    .group-calendar {
+      display: block;
+
+      .calendar {
+        width: 100%;
+
+        &:first-child {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .worker-franchise-inquiry__detail,
+    .applicant-inquiry__detail__tab {
+      background-color: none;
+      .table-responsive {
+        display: none;
+      }
+
+      .list-group {
+        padding: 0;
+        border: 0;
+        display: block;
+
+        .list-group-scrollbar {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+//custom scrollbar
+.custom-scrollbar {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #848fa4;
+    border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.form-search-worker {
+  @media screen and (max-width: 1199.6px) {
+    .custom-margin {
+      margin-bottom: 13px;
+    }
+  }
+}
+
+.col-form-label {
+  padding-top: 0;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  padding-bottom: 0;
+  margin-bottom: 13px;
+  line-height: 1.19;
+  padding-right: 0;
+}
+
+.mb-13,
+.mb-5px {
+  margin-bottom: 13px;
+}
+
+.me-16 {
+  margin-right: 16px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+@media screen and (min-width: 1200px) {
+  .mt-12 {
+    margin-top: 12px;
+  }
+
+  .form-search {
+    .col-form-label {
+      padding-right: 14px;
+      word-break: break-all;
+      width: 90px;
+    }
+  }
+}
+
+@media screen and (max-width: 1199.6px) {
+  .form-search {
+    .col {
+      min-width: 100%;
+    }
+  }
+
+  .col-form-label {
+    justify-content: flex-start !important;
+    margin-bottom: 5px;
+  }
+
+  .mb-13 {
+    margin-bottom: 12px !important;
+  }
+
+  .mb-5px {
+    margin-bottom: 5px;
+  }
+
+  .col-md-0 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 681px) {
+  .main-layout--active-menu {
+    .mb-13 {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .mb-13 {
+    margin-bottom: 10px !important;
+  }
+
+  .me-16 {
+    margin-right: 0;
+  }
+
+  .form-search-action {
+    position: absolute;
+    right: 13px;
+  }
+
+  .col-form-label {
+    font-size: 14px;
+    .title {
+      font-size: 14px !important;
+    }
+  }
+
+  .title {
+    font-size: 14px;
+  }
+}
+
+.asignment-list {
+  .system-user__search {
+    // padding-bottom: 0 !important;
+
+    .custom-margin {
+      margin-bottom: 13px;
+    }
+
+    @media screen and (max-width: 1199.6px) {
+      padding-bottom: 13px !important;
+
+      .custom-margin {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.box-table {
+  background-color: $white;
+  padding: 13px;
+  border-radius: 12px;
+  box-shadow: 2.6px 3px 7px 0 rgba(13, 46, 122, 0.05);
+
+  &:has(.list-group) {
+    padding: 13px 0 13px 13px;
+
+    @media screen and (max-width: 1200px) and (min-width: 681px) {
+      padding: 13px;
+
+      .table-responsive {
+        padding: 0;
+      }
+    }
+
+    .list-group__header-title--right {
+      margin-right: 13px;
+    }
+  }
+
+  .table-responsive {
+    padding-right: 13px;
+  }
+
+  .card-title {
+    margin-bottom: 17px !important;
+    display: block !important;
+    padding-top: 0 !important;
+  }
+
+  @media screen and (max-width: 680px) {
+    .card-title {
+      display: none !important;
+    }
+
+    .table-responsive {
+      display: none;
+    }
+
+    .list-group {
+      padding: 0;
+      border: 0;
+      margin-top: 6px;
+
+      .list-group-scrollbar {
+        padding-right: 0;
+      }
+
+      &__content {
+        padding-right: 13px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 681px) {
+  .main-layout--active-menu {
+    .box-table {
+      &:has(.list-group) {
+        padding: 13px 0 13px 13px;
+      }
+    }
+  }
+}
+
+.worker-franchise-inquiry__detail,
+.applicant-inquiry__detail__tab {
+  @media screen and (max-width: 680px) {
+    .table-responsive {
+      display: none;
+    }
+
+    .list-group {
+      padding: 0;
+      border: 0;
+      margin-top: 6px;
+
+      .list-group-scrollbar {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.pr-5 {
+  @media screen and (max-width: 680px) {
+    padding-right: 5px;
+  }
+}
+
+.icon-default,
+.icon_hover {
+  @media screen and (max-width: 680px) {
+    display: none !important;
+  }
+}
+
+.justify-content-xl-end {
+  text-align: right;
+}
+
+.row-right {
+  @media screen and (min-width: 1200px) {
+    .col-form-label {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+}
+
+.col-form-input-button,
+.col-form-input-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media screen and (max-width: 680px) {
+  .col-form-input-input {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 681px) {
+  .main-layout--active-menu {
+    .col-form-label {
+      font-size: 14px;
+      .title {
+        font-size: 14px;
+      }
+    }
+    .col-form-input-input {
+      grid-template-columns: 1fr;
+    }
+    .title {
+      font-size: 14px;
+    }
+  }
+}

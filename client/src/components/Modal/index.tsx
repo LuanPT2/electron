@@ -17,7 +17,7 @@ const ModalPrimary = ({
   textBtnLeft,
   classNameBtnLeft = '',
   classNameBtnRight = '',
-  textBtnRight = '확인',
+  textBtnRight = 'Kiểm Tra',
   handleSubmit,
   isShowFooter = true,
   isShowIconCircleClose = false,
@@ -38,7 +38,7 @@ const ModalPrimary = ({
         <Modal.Title>{title}</Modal.Title>
         {isShowCloseIcon &&
           (isShowIconCircleClose ? (
-            <img className="icon-close" onClick={handleClose} src={IMAGES.icon_circle_close} alt="원 닫기" />
+            <img className="icon-close" onClick={handleClose} src={IMAGES.icon_circle_close} alt="đóng vòng tròn" />
           ) : (
             <img className="icon-close" onClick={handleClose} src={IMAGES.icon_close_modal} alt="Close" />
           ))}

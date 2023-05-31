@@ -5,6 +5,11 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 var ws = require('./websocket/socket')
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*'
+}));
 
 // enable files upload
 app.use(fileUpload({createParentPath: true}));

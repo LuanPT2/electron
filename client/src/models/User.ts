@@ -1,4 +1,4 @@
-
+import * as actionTypes from 'pages/Authorization/redux/actionTypes';
 
 export type loginInfoError = {
   username: boolean;
@@ -64,3 +64,34 @@ export type LoginRequestFailedPayload = {
   status: string;
   error: string;
 };
+
+
+export type LoginRequestAction = {
+  type: typeof actionTypes.LOGIN_REQUEST;
+  payload: LoginRequestPayload;
+};
+
+export type LoginRequestSuccessAction = {
+  type: typeof actionTypes.LOGIN_REQUEST_SUCCESS;
+  payload: LoginRequestSuccessPayload;
+};
+
+export type LoginRequestFailedAction = {
+  type: typeof actionTypes.LOGIN_REQUEST_FAILED;
+  payload: LoginRequestFailedPayload;
+};
+
+export type ResetTypeAuth = {
+  type: typeof actionTypes.RESET_TYPE_AUTH;
+};
+
+export type LogoutRequest = {
+  type: typeof actionTypes.LOGOUT_REQUEST;
+};
+
+export type LoginRequestActions =
+  | LoginRequestAction
+  | LoginRequestSuccessAction
+  | LoginRequestFailedAction
+  | ResetTypeAuth
+  | LogoutRequest;

@@ -20,7 +20,7 @@
       left: 0;
       height: pxToRem(18);
       width: pxToRem(18);
-      background-image: url('../../assets/image/checkbox_big_off.svg');
+      background-image: url('../../assets/images/checkbox_big_off.svg');
       background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -35,7 +35,7 @@
       left: 0;
       height: pxToRem(18);
       width: pxToRem(18);
-      background-image: url('../../assets/image/checkbox_big_off.svg');
+      background-image: url('../../assets/images/checkbox_big_off.svg');
       background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -54,7 +54,7 @@
       left: 0;
       height: pxToRem(18);
       width: pxToRem(18);
-      background-image: url('../../assets/image/checkbox_big_on.svg');
+      background-image: url('../../assets/images/checkbox_big_on.svg');
       background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -83,14 +83,14 @@
       &::before {
         height: pxToRem(15);
         width: pxToRem(15);
-        background-image: url('../../assets/image/checkbox_off.svg');
+        background-image: url('../../assets/images/checkbox_off.svg');
       }
     }
     &.my-checkbox--checked {
       .my-checkbox__label::after {
         height: pxToRem(15);
         width: pxToRem(15);
-        background-image: url('../../assets/image/checkbox_on.svg');
+        background-image: url('../../assets/images/checkbox_on.svg');
       }
     }
   }
