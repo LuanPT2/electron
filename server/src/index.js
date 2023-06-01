@@ -5,6 +5,7 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 var ws = require('./websocket/socket')
+var mqtt = require('./mqtt/mqtt')
 const cors = require('cors');
 
 app.use(cors({
