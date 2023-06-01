@@ -1,0 +1,279 @@
+.header {
+  width: 100%;
+  height: pxToRem(65);
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding-right: 45px;
+
+  &__logo {
+    width: pxToRem(107);
+    height: pxToRem(27);
+    margin-right: pxToRem(44);
+    margin-left: pxToRem(20);
+  }
+
+  &__menu-burger {
+    width: pxToRem(25);
+    height: pxToRem(25);
+    cursor: pointer;
+
+    @media screen and (max-width: 1199.6px) {
+      width: pxToRem(21);
+      height: pxToRem(17);
+      margin-left: 20px;
+    }
+  }
+
+  &__middle {
+    &__logo {
+      display: none;
+    }
+
+    &__support {
+      display: none;
+    }
+
+    .main-menu {
+      &__list {
+        display: flex;
+        list-style: none;
+
+        gap: pxToRem(20);
+        margin-right: 20px;
+        padding-right: 20px;
+      }
+
+      &__item {
+        font-size: 16px;
+        position: relative;
+
+        a {
+          cursor: pointer;
+          color: #7d7d7d;
+
+          &:hover {
+            color: #1d1d1d;
+          }
+        }
+
+        span {
+          color: #7d7d7d;
+        }
+
+        &.active {
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 3px;
+            background-color: #7086ff;
+            bottom: -25px;
+          }
+
+          a,
+          span {
+            color: $dark;
+            font-weight: 600;
+          }
+        }
+
+        &:last-child {
+          a {
+            font-weight: $regular;
+          }
+          &::after {
+            content: '';
+            width: 1px;
+            height: 20px;
+            position: absolute;
+            background-color: #bcc0d8;
+            right: -20px;
+            top: -2px;
+          }
+        }
+      }
+    }
+  }
+
+  &__last {
+    &-username {
+      font-size: 12px;
+      color: $color-chart;
+
+      &:hover {
+        color: $color-gray;
+      }
+
+      &.active {
+        color: $dark;
+      }
+    }
+
+    > img {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .vertical-line {
+    height: pxToRem(20);
+    width: pxToRem(1);
+    background-color: $border-color-form;
+  }
+}
+
+@media screen and (max-width: 1199.6px) {
+  .header {
+    font-size: pxToRem(14);
+    padding-right: 20px;
+
+    &.shadow-sm {
+      padding-left: 0px;
+    }
+
+    &__logo {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1199.6px) {
+  .header {
+    &__last {
+      display: none;
+    }
+
+    .main-menu {
+      &__list {
+        margin-right: 0;
+        padding-right: 0;
+      }
+
+      &__item {
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &__middle {
+      &__logo {
+        display: block;
+        width: 104px;
+        height: 27px;
+        position: absolute;
+        top: 5px;
+        left: 43%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .breadcrumb {
+    display: none;
+  }
+
+  .header {
+    font-size: pxToRem(12);
+    padding-right: pxToRem(20) !important;
+    padding-left: 0px;
+
+    &.shadow-sm {
+      padding-left: 0;
+    }
+
+    &__logo {
+      display: none;
+    }
+
+    .main-menu__list {
+      display: none;
+    }
+
+    &__middle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__logo {
+        width: 104px;
+        height: 27px;
+        display: block;
+        left: -15px;
+        position: relative;
+        top: 0;
+      }
+
+      &__support {
+        width: 24px;
+        height: 22px;
+        position: absolute;
+        right: 20px;
+        display: block;
+      }
+    }
+
+    .header_mobile_list-menu {
+      width: 100%;
+      height: 36px;
+      position: fixed;
+      top: 65px;
+      background-color: $white;
+      left: 0;
+      padding-top: 10px;
+      border-top: 1px solid #dfe3ec;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+      &__list {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+
+        &__item {
+          margin-right: 30px;
+
+          a {
+            cursor: pointer;
+            color: $dusty-gray;
+            font-size: 14px;
+            line-height: 16px;
+            color: #1d1d1d;
+
+            &:hover {
+              color: $color-gray;
+            }
+          }
+
+          span {
+            color: $dusty-gray;
+          }
+
+          &.active {
+            position: relative;
+
+            &::before {
+              position: absolute;
+              content: '';
+              width: 100%;
+              height: 3px;
+              background-color: #7086ff;
+              bottom: -9px;
+            }
+
+            a,
+            span {
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
+}

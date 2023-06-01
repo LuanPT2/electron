@@ -7,6 +7,8 @@ import { API, ROUTES } from 'api/Api';
 import { getCookie } from 'utils/helper/cookiesFunc';
 import { useAppDispatch, useAppSelector } from 'utils/hook';
 import PrivateRouter from './PrivateRouter';
+import NotFound from 'components/NotFound';
+import MainLayout from 'components/Layout';
 
 const Router = () => {
   const [isAuth, setIsAuth] = useState(true);
@@ -77,12 +79,15 @@ const Router = () => {
   };
   return (
     <Routes>
-          <Route path={ROUTERS.LOGIN} element={isAuth ? <Navigate to={toPath} replace /> : <Login />}></Route>
-          <Route path={ROUTERS.MAIN} element={
-             <PrivateRouter {...{ isAuth }}>
-               <DashBoard />
-             </PrivateRouter>
-          }></Route>
+      <Route path={ROUTERS.LOGIN} element={isAuth ? <Navigate to={toPath} replace /> : <Login />}></Route>
+      <Route path={ROUTERS.MAIN} element={
+          <PrivateRouter {...{ isAuth }}>
+            <MainLayout />
+          </PrivateRouter>
+      }>
+
+      </Route>
+      <Route path="*" element={<NotFound {...{ toPath }} />} />
     </Routes>
   );
 };
