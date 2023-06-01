@@ -25,11 +25,6 @@ export default () => {
     stateReconciler: seamlessImmutableReconciler,
     whitelist: [
       'authReducer',
-      'formsReducer',
-      'dataChangeWorkerReducer',
-      'changeWorkerReducer',
-      'listApplicantReducer',
-      'franchiseManagementReducer',
     ],
   };
 

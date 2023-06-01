@@ -7,8 +7,7 @@ export const initialStateAuth: actionPayloadTypes.InitialStateAuth = {
   statusCode: '',
   message: '',
   accessToken: '',
-  user: {} as actionPayloadTypes.UserInfo,
-  isSuccess: false,
+  user:{} as actionPayloadTypes.UserInfo,
 };
 
 const authReducer = (
@@ -28,10 +27,10 @@ const authReducer = (
         ...state,
         type: action.type,
         isProcessing: false,
-        statusCode: action.payload.status,
+        statusCode: action.payload.statusCode,
         message: action.payload.message,
-        accessToken: action.payload.data?.jwt || '',
-        user: action.payload.data?.user || {},
+        accessToken: action.payload.data.accessToken || '',
+        user: action.payload.data.user || {},
       };
 
     case actionTypes.LOGIN_REQUEST_FAILED:

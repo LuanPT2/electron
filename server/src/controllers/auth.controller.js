@@ -20,12 +20,13 @@ const signin = async (req, res) => {
             }
 
             var token = authJwt.createToken(user[0]);
-            user[0].accessToken = token;
             return  res.status(200).send({
                 statusCode: 200,
-                statusMessage: 'Ok',
                 message: 'Successfully',
-                data: user[0]
+                data: {
+                    user: user[0],
+                    accessToken: token
+                    }
                 });
         }).catch(err => {
             res.status(500).send({ message: err.message });

@@ -19,29 +19,18 @@ export type InitialStateAuth = {
   message: string;
   accessToken: string;
   user: UserInfo;
-  isSuccess: boolean;
 };
 
 export type UserInfo = {
-  email: string;
-  userId: string;
-  userName: string;
-  unitId: string;
-  unitName: string;
-  unitTypeNm?: string;
-  roleId: string;
-  roleName: string;
-  userType: string;
-  departmentName: string;
-  name: string;
+  id: string;
+  username: string;
+  password: string;
   phone: string;
-  status: number;
-  remark: string;
-  registId: string;
-  registDt: string;
-  updtId: string;
-  updtDt: string;
-  picOfUnit: boolean;
+  name: string;
+  avatar: string;
+  regist_dt: string;
+  role: string;
+  accessToken: string;
 };
 
 export type LoginRequestPayload = {
@@ -51,13 +40,12 @@ export type LoginRequestPayload = {
 };
 
 export type LoginRequestSuccessPayload = {
-  timeStamp: string;
-  status: string;
+  statusCode: string;
   message: string;
   data: {
-    jwt: string;
+    accessToken: string;
     user: UserInfo;
-  };
+  }
 };
 
 export type LoginRequestFailedPayload = {

@@ -12,17 +12,17 @@ function* loginRequest(action: actionPayloadTypes.LoginRequestAction) {
     const { data } = response;
 
     if (response.ok) {
-      if (data.statusCode === 200) {
+      if (data?.statusCode === 200) {
         yield put({
           type: actionTypes.LOGIN_REQUEST_SUCCESS,
-          payload: data.data,
+          payload: data,
         });
 
         // set Token Cookies
         if (action.payload.rememberMe) {
-          setCookie('token', data?.data?.accessToken, 30);
+          setCookie('token', data?.data?.accessToken, 0.01);
         } else {
-          setCookie('token', data?.data?.accessToken, 0.5);
+          setCookie('token', data?.data?.accessToken, 0.01);
         }
       } else {
         yield put({
