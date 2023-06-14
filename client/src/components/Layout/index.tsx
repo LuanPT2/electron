@@ -1,14 +1,14 @@
 import Header from 'components/Header';
-import SideMenu from 'components/SideMenu';
 import {
   LIST_HEADER_MENU,
   LIST_MENU_USER,
 } from 'constants/listMenu';
-import ROUTERS from 'constants/routers';
+
 import React, { memo, useEffect, useState } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import { AppState } from 'store/rootReducers';
 import { useAppSelector } from 'utils/hook';
+import  MainControl from 'pages/Control/MainControl';
 
 const MainLayout = () => {
   const [toggleMenu, setToggleMenu] = useState(localStorage.getItem('toggleMenu') === 'false' ? false : true);
@@ -57,9 +57,12 @@ const MainLayout = () => {
     <div className={`main-layout ${toggleMenu ? 'main-layout--active-menu' : ''}`}>
       <Header {...{ setToggleMenu, toggleMenu }} />
       <div className="main-content">
-        <SideMenu {...{ user, menus, pathname, accordionSubMenu, setAccordionSubMenu }} />
-        <div className="right-content">
+        {/* <SideMenu {...{ user, menus, pathname, accordionSubMenu, setAccordionSubMenu }} /> */}
+        {/* <div className="right-content">
           <Outlet />
+        </div> */}
+        <div className="right-content">
+          <MainControl/>
         </div>
       </div>
     </div>

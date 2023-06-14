@@ -1,0 +1,47 @@
+.main-layout {
+  max-width: 100vw;
+  position: relative;
+
+  .side-menu {
+    z-index: 99;
+    position: fixed;
+    width: pxToRem(200);
+    background-color: $color-menu;
+    top: pxToRem(65);
+    left: pxToRem(-200);
+    transition: left 0.5s ease-in-out;
+  }
+
+  .right-content {
+    width: 100%;
+    padding-left: 0;
+    transition: padding 0.5s ease-in-out;
+  }
+
+  &--active-menu {
+    .right-content {
+      padding-left: pxToRem(200);
+    }
+
+    .side-menu {
+      left: 0;
+
+      &__footer {
+        left: -0px;
+      }
+    }
+  }
+
+  .main-content {
+    padding: 15px 46px 56px 20px;
+    transition: all 0.5s ease-in-out;
+    margin-top: pxToRem(65);
+    background-color: $bg-main-content;
+    min-height: calc(100vh - 65px);
+
+    .card-header {
+      font-size: pxToRem(24);
+      font-weight: $bold;
+    }
+  }
+}

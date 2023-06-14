@@ -5,8 +5,6 @@
 @import './styles/mixins';
 @import './styles/common';
 
-/** import page */
-@import './pages/Authorization/Login/styles';
 // Button Component
 @import './components/Button/styles';
 // Input component
@@ -15,3 +13,17 @@
 @import './components/Radio/styles';
 // Checkbox component
 @import './components/Checkbox/styles';
+// Layout component
+@import './components/Layout/styles';
+// Header component
+@import './components/Header/styles';
+// MultiRangeSlider component
+@import './components/MultiRangeSlider/stypes';
+
+
+/** import page */
+@import './pages/Authorization/Login/styles';
+// MainControl component
+@import './pages/Control/MainControl/stypes';
+// SensorControl component
+@import './pages/Control/MainControl/components/SensorControl/stypes';

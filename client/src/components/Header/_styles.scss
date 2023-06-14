@@ -1,0 +1,39 @@
+.header {
+  width: 100%;
+  height: pxToRem(65);
+  background-color: white;
+  position: fixed;
+  display: flex;
+  top: 0;
+  z-index: 100;
+  padding-right: 45px;
+
+  &__last {
+    float: right;
+    margin-left: auto;
+    &-username {
+      font-size: 12px;
+      color: $color-chart;
+      
+      &:hover {
+        color: $color-gray;
+      }
+
+      &.active {
+        color: $dark;
+      }
+    }
+
+    > img {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .vertical-line {
+    height: pxToRem(20);
+    width: pxToRem(1);
+    background-color: $border-color-form;
+  }
+}

@@ -1,0 +1,37 @@
+.sensor-control-page {
+    .control {
+        display: block
+    }
+    .row-device {
+        margin: 5px;
+        display: flex;
+        height: 100px;
+    }
+
+    .col-type {
+       margin-right: 10px;
+       margin-left: 10px;
+       align-self: center;
+    }
+
+    .control-colum1 {
+        width: 100px;
+        display: flex;
+    }
+
+    .control-colum2 {
+        width: 30px;
+        display: flex;
+    }
+
+    .control-colum3 {
+        width: 700px;
+        display: flex;
+    }
+
+    .multi-range-slider-container {
+        max-width: 600px;
+        margin: auto;
+    }
+    
+}

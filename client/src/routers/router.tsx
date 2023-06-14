@@ -2,7 +2,6 @@ import ROUTERS from 'constants/routers';
 import { useEffect, useState } from 'react';
 import {Navigate, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Login from "pages/Authorization/Login";
-import DashBoard from "pages/DashBoard";
 import { API, ROUTES } from 'api/Api';
 import { getCookie } from 'utils/helper/cookiesFunc';
 import { useAppDispatch, useAppSelector } from 'utils/hook';
