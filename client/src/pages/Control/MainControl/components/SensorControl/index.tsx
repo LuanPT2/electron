@@ -1,41 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "components/Button";
-import { sensorInfo } from "models/Sensor";
+import { SensorInfo } from "models/Sensor";
 import MultiRangeSlider, { ChangeResult } from "components/MultiRangeSlider";
+import Button from "components/Button";
 
 type SensorControlProps = {
-  sensorInfo: sensorInfo;
+  sensorInfo: SensorInfo;
+  onChangeInputValue: (value: number, name: string) => void;
+  onClickChangeConfig: () => void;
 };
 
-const SensorControl = ({ sensorInfo }: SensorControlProps) => {
-  const [minMonthValue, setMinMonthValue] = useState(0);
-  const [maxMonthValue, setMaxMonthValue] = useState(100);
-
-  const ref = useRef<HTMLDivElement>(null);
-  const [minValue, setMinValue] = useState(25);
-  const [maxValue, setMaxValue] = useState(75);
-  const [minValue2, setMinValue2] = useState(25);
-  const [maxValue2, setMaxValue2] = useState(75);
-  const [minValue3, setMinValue3] = useState(0);
-  const [maxValue3, setMaxValue3] = useState(6);
-  const [minValue4, setMinValue4] = useState(0);
-  const [maxValue4, setMaxValue4] = useState(0);
-  const [minValue5, setMinValue5] = useState(0);
-  const [maxValue5, setMaxValue5] = useState(0);
-  const [minValue6, setMinValue6] = useState(0);
-  const [maxValue6, setMaxValue6] = useState(0);
-  useEffect(() => {
-    const div = ref.current;
-    console.log(div);
-  }, []);
-  const [minCaption, set_minCaption] = useState("");
-
-  const [maxCaption, set_maxCaption] = useState("");
-
-  const changeConfigEnv = () => {
-    // todo
-  };
-
+const SensorControl = ({
+  sensorInfo,
+  onChangeInputValue,
+  onClickChangeConfig,
+}: SensorControlProps) => {
   return (
     <div className="sensor-control-page">
       <div className="control">
@@ -50,13 +28,13 @@ const SensorControl = ({ sensorInfo }: SensorControlProps) => {
             <MultiRangeSlider
               min={15}
               max={35}
-              minValue={30}
-              maxValue={60}
+              minValue={sensorInfo.EnvTempMin}
+              maxValue={sensorInfo.EnvTempMax}
               step={0.5}
               stepOnly={true}
               onInput={(e: ChangeResult) => {
-                setMinValue(e.minValue);
-                setMaxValue(e.maxValue);
+                onChangeInputValue(e.minValue, "EnvTempMin");
+                onChangeInputValue(e.maxValue, "EnvTempMax");
               }}
             />
           </div>
@@ -66,19 +44,19 @@ const SensorControl = ({ sensorInfo }: SensorControlProps) => {
             <p>Độ ẩm</p>
           </div>
           <div className="col-type control-colum2">
-            <p>{sensorInfo.EnvTemp}%</p>
+            <p>{sensorInfo.EnvHumi}%</p>
           </div>
           <div className="col-type control-colum3">
             <MultiRangeSlider
               min={0}
               max={100}
-              minValue={30}
-              maxValue={60}
+              minValue={sensorInfo.EnvHumiMin}
+              maxValue={sensorInfo.EnvHumiMax}
               step={1}
               stepOnly={true}
               onInput={(e: ChangeResult) => {
-                setMinValue(e.minValue);
-                setMaxValue(e.maxValue);
+                onChangeInputValue(e.minValue, "EnvHumiMin");
+                onChangeInputValue(e.maxValue, "EnvHumiMax");
               }}
             />
           </div>
@@ -88,26 +66,28 @@ const SensorControl = ({ sensorInfo }: SensorControlProps) => {
             <p>Độ PH</p>
           </div>
           <div className="col-type control-colum2">
-            <p>{sensorInfo.EnvTemp}</p>
+            <p>{sensorInfo.PH}</p>
           </div>
           <div className="col-type control-colum3">
             <MultiRangeSlider
               min={1}
               max={13}
-              minValue={5}
-              maxValue={6}
+              minValue={sensorInfo.PHMin}
+              maxValue={sensorInfo.PHMax}
               step={0.1}
               stepOnly={true}
               onInput={(e: ChangeResult) => {
-                setMinValue(e.minValue);
-                setMaxValue(e.maxValue);
+                onChangeInputValue(e.minValue, "PHMin");
+                onChangeInputValue(e.maxValue, "PHMax");
               }}
             />
           </div>
         </div>
+      </div>
+      <div className="center">
         <Button
-          onClick={() => changeConfigEnv()}
-          customClass="btns_general btns__edit"
+          onClick={onClickChangeConfig}
+          customClass="btn--primary center button-changeconfig"
         >
           Thay đổi cấu hình
         </Button>

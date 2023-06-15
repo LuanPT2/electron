@@ -2,7 +2,6 @@
 import { createStore, applyMiddleware, compose, Middleware, StoreEnhancer } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import RootSagas from './rootSagas';
-import { createLogger } from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import appReducers from './rootReducers';
@@ -33,14 +32,6 @@ export default () => {
   /* ------------- Saga Middleware ------------- */
   const sagaMiddleware: SagaMiddleware<{}> = createSagaMiddleware();
   middleware.push(sagaMiddleware);
-
-  /* ------------- Logger Middleware ------------- */
-
-  if (__DEV__) {
-    // create the logger
-    // const logger = createLogger() as never;
-    // middleware.push(logger);
-  }
 
   /* ------------- Sync middleware ------------- */
 

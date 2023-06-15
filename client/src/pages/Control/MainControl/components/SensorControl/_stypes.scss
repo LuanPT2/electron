@@ -1,4 +1,6 @@
 .sensor-control-page {
+    display: block;
+
     .control {
         display: block
     }
@@ -25,7 +27,7 @@
     }
 
     .control-colum3 {
-        width: 700px;
+        width: 900px;
         display: flex;
     }
 
@@ -34,4 +36,5 @@
         margin: auto;
     }
     
+
 }

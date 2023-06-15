@@ -1,0 +1,39 @@
+.main-control-page {
+    position: relative;
+    display: block;
+    width: 1200px;
+    .sensor-control {
+        padding: 20px;
+        border-radius: 20px;
+        background-color: rgb(183, 226, 228);
+    }
+    .center {
+        text-align: center;
+        margin: auto;
+        width: fit-content;
+        padding: 10px;
+      }
+    
+    .charts-page {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .chart {
+        margin-top: 10px;
+    }
+
+    .button-changeconfig {
+        width: auto;
+    }
+
+    .control-title {
+       font-size: 2.5em; 
+    }
+
+    .chart-title {
+        font-size: 1.7em; 
+     }
+}
