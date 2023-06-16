@@ -79,6 +79,10 @@ export type SensorChangeDataSensorRequestAction = {
   payload: SensorInfo;
 };
 
+export type SensorChangeDataSensorSuccessAction = {
+  type: typeof actionTypes.SENSOR_CHANGE_DATA_SUCCESS;
+  payload: SensorInfo;
+};
 export type changeDataSensorSuccessPayload = {
   statusCode: string;
   statusMessage: string;
@@ -91,4 +95,5 @@ export type changeDataSensorSuccessPayload = {
 export type RequestActions =
   | SensorGetDataRequestAction
   | SensorApiFalseAction
+  | SensorChangeDataSensorSuccessAction
   | SensorGetDataSuccessAction;

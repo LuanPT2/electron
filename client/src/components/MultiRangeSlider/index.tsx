@@ -373,7 +373,7 @@ const MultiRangeSlider = (
     set_barMax(_barMax);
     _triggerTimeout && window.clearTimeout(_triggerTimeout);
     _triggerTimeout = window.setTimeout(triggerChange, 20);
-  }, [minValue, maxValue, min, max, fixed, props, isChange]);
+  }, [minValue, maxValue, min, max, fixed, isChange]);
 
   useEffect(() => {
     let _minValue = props.minValue;

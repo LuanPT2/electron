@@ -109,6 +109,7 @@ const MainControl = () => {
   };
 
   const handleChangeSensorInfo = (value: number, name: string) => {
+    console.log(name + ":" + value);
     setSensorInfoState({ ...sensorInfoState, [name]: value });
   };
 
@@ -132,18 +133,17 @@ const MainControl = () => {
   }, []);
 
   const { sensorInfo } = useAppSelector((state) => state.sensorReducer);
+  // useEffect(() => {
+  //   if (sensorInfo) {
+  //     setSensorInfoState(sensorInfo);
 
-  useEffect(() => {
-    if (sensorInfo) {
-      setSensorInfoState(sensorInfo);
-
-      const interval = setInterval(() => {
-        console.log("Call interval!");
-        dispatch(getDataSensor());
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-  }, [sensorInfo]);
+  //     const interval = setInterval(() => {
+  //       console.log("Call interval!");
+  //       dispatch(getDataSensor());
+  //     }, 1000000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [sensorInfo]);
 
   const onClickChangeConfig = () => {
     dispatch(changeConfigSensor(sensorInfoState));
@@ -157,12 +157,12 @@ const MainControl = () => {
       <div className="sensor-control">
         <SensorControl
           sensorInfo={sensorInfoState}
-          onChangeInputValue={handleChangeSensorInfo}
+          onChangeSliderValue={handleChangeSensorInfo}
           onClickChangeConfig={onClickChangeConfig}
         />
       </div>
       <div className="charts-page">
-        <div className=" chart-title">
+        <div className="chart-title">
           <h1 className="center">Biểu Đồ Lịch Sử Theo Ngày</h1>
         </div>
         <div className="chart">

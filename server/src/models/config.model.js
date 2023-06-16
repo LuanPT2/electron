@@ -1,12 +1,12 @@
 const pool = require('../databases/mysql.db');
 
 class ConfigSensor {
-    constructor(EnvTempMin, EnvTempMax, HumiMin, HumiMax, PHMin, PHMax) {
+    constructor(EnvTempMin, EnvTempMax, EnvHumiMin, EnvHumiMax, PHMin, PHMax) {
         this._id = null;
         this._EnvTempMin = EnvTempMin;
         this._EnvTempMax = EnvTempMax;
-        this._HumiMin = HumiMin;
-        this._HumiMax = HumiMax;
+        this._EnvHumiMin = EnvHumiMin;
+        this._EnvHumiMax = EnvHumiMax;
         this._PHMin = PHMin;
         this._PHMax = PHMax;
     }
@@ -15,8 +15,8 @@ class ConfigSensor {
         const sql = `UPDATE config SET 
             EnvTempMin = "${options.EnvTempMin}", 
             EnvTempMax = "${options.EnvTempMax}",
-            HumiMin = "${options.HumiMin}", 
-            HumiMax = "${options.HumiMax}",
+            EnvHumiMin = "${options.EnvHumiMin}", 
+            EnvHumiMax = "${options.EnvHumiMax}",
             PHMin = "${options.PHMin}", 
             PHMax = "${options.PHMax}"
             WHERE id = "1"`;
@@ -35,12 +35,12 @@ class ConfigSensor {
         return this._EnvTempMax;
     }
 
-    get HumiMin() {
-        return this._HumiMin;
+    get EnvHumiMin() {
+        return this._EnvHumiMin;
     }
 
-    get HumiMax() {
-        return this._HumiMax;
+    get EnvHumiMax() {
+        return this._EnvHumiMax;
     }
 
     get PHMin() {
@@ -64,12 +64,12 @@ class ConfigSensor {
         return this._EnvTempMax;
     }
 
-    set HumiMin(HumiMin) {
-        this._HumiMin = HumiMin;
+    set EnvHumiMin(EnvHumiMin) {
+        this._EnvHumiMin = EnvHumiMin;
     }
 
-    set HumiMax(HumiMax) {
-        this._HumiMax = HumiMax;
+    set EnvHumiMax(EnvHumiMax) {
+        this._EnvHumiMax = EnvHumiMax;
     }
 
     set PHMin(PHMin) {

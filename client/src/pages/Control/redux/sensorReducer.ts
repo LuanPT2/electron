@@ -29,6 +29,13 @@ const sensorReducer = (
           sensorInfo: action.payload.data.sensorInfo || {},
         };
 
+    case actionTypes.SENSOR_CHANGE_DATA_SUCCESS:
+          return {
+            ...state,
+            type: action.type,
+            isProcessing: true
+          };
+
     case actionTypes.SENSOR_API_FALSE:
       return {
         ...state,

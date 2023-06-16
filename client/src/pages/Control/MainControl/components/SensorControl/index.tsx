@@ -5,13 +5,13 @@ import Button from "components/Button";
 
 type SensorControlProps = {
   sensorInfo: SensorInfo;
-  onChangeInputValue: (value: number, name: string) => void;
+  onChangeSliderValue: (value: number, name: string) => void;
   onClickChangeConfig: () => void;
 };
 
 const SensorControl = ({
   sensorInfo,
-  onChangeInputValue,
+  onChangeSliderValue,
   onClickChangeConfig,
 }: SensorControlProps) => {
   return (
@@ -32,9 +32,9 @@ const SensorControl = ({
               maxValue={sensorInfo.EnvTempMax}
               step={0.5}
               stepOnly={true}
-              onInput={(e: ChangeResult) => {
-                onChangeInputValue(e.minValue, "EnvTempMin");
-                onChangeInputValue(e.maxValue, "EnvTempMax");
+              onChange={(e: ChangeResult) => {
+                onChangeSliderValue(e.minValue, "EnvTempMin");
+                onChangeSliderValue(e.maxValue, "EnvTempMax");
               }}
             />
           </div>
@@ -54,9 +54,9 @@ const SensorControl = ({
               maxValue={sensorInfo.EnvHumiMax}
               step={1}
               stepOnly={true}
-              onInput={(e: ChangeResult) => {
-                onChangeInputValue(e.minValue, "EnvHumiMin");
-                onChangeInputValue(e.maxValue, "EnvHumiMax");
+              onChange={(e: ChangeResult) => {
+                onChangeSliderValue(e.minValue, "EnvHumiMin");
+                onChangeSliderValue(e.maxValue, "EnvHumiMax");
               }}
             />
           </div>
@@ -76,9 +76,9 @@ const SensorControl = ({
               maxValue={sensorInfo.PHMax}
               step={0.1}
               stepOnly={true}
-              onInput={(e: ChangeResult) => {
-                onChangeInputValue(e.minValue, "PHMin");
-                onChangeInputValue(e.maxValue, "PHMax");
+              onChange={(e: ChangeResult) => {
+                onChangeSliderValue(e.minValue, "PHMin");
+                onChangeSliderValue(e.maxValue, "PHMax");
               }}
             />
           </div>

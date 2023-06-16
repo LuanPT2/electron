@@ -42,8 +42,8 @@ function* changeDataSensorConfig(payload: actionPayloadTypes.SensorChangeDataSen
       if (response.ok) {
         if (data?.statusCode === 202) {
           yield put({
-            type: actionTypes.SENSOR_GET_DATA_SUCCESS,
-            payload: payload,
+            type: actionTypes.SENSOR_CHANGE_DATA_SUCCESS,
+            payload: payload.payload,
           });
         } else {
           yield put({
