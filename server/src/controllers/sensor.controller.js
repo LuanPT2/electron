@@ -7,12 +7,12 @@ const getDataSensorLastest = async (req, res) => {
         const dataSensor = await DataSensor.getLatestData({});
         const result = {
             ...dataSensor[0],
-            EnvTempMin: '25',
-            EnvTempMax: '28',
-            EnvHumiMin: '60',
-            EnvHumiMax: '70',
-            PHMin: '6',
-            PHMax: '7'
+            EnvTempMin: '26',
+            EnvTempMax: '29',
+            EnvHumiMin: '61',
+            EnvHumiMax: '72',
+            PHMin: '6.2',
+            PHMax: '7.5'
         }
 
         res.send({

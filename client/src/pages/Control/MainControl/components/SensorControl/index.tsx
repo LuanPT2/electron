@@ -5,7 +5,12 @@ import Button from "components/Button";
 
 type SensorControlProps = {
   sensorInfo: SensorInfo;
-  onChangeSliderValue: (value: number, name: string) => void;
+  onChangeSliderValue: (
+    valueMin: number,
+    nameMin: string,
+    valueMax: number,
+    nameMax: string
+  ) => void;
   onClickChangeConfig: () => void;
 };
 
@@ -33,8 +38,12 @@ const SensorControl = ({
               step={0.5}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(e.minValue, "EnvTempMin");
-                onChangeSliderValue(e.maxValue, "EnvTempMax");
+                onChangeSliderValue(
+                  e.minValue,
+                  "EnvTempMin",
+                  e.maxValue,
+                  "EnvTempMax"
+                );
               }}
             />
           </div>
@@ -55,8 +64,12 @@ const SensorControl = ({
               step={1}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(e.minValue, "EnvHumiMin");
-                onChangeSliderValue(e.maxValue, "EnvHumiMax");
+                onChangeSliderValue(
+                  e.minValue,
+                  "EnvHumiMin",
+                  e.maxValue,
+                  "EnvHumiMax"
+                );
               }}
             />
           </div>
@@ -77,8 +90,8 @@ const SensorControl = ({
               step={0.1}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(e.minValue, "PHMin");
-                onChangeSliderValue(e.maxValue, "PHMax");
+                console.log(e, "e");
+                onChangeSliderValue(e.minValue, "PHMin", e.maxValue, "PHMax");
               }}
             />
           </div>

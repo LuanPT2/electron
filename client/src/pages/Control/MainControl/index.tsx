@@ -108,10 +108,21 @@ const MainControl = () => {
     ],
   };
 
-  const handleChangeSensorInfo = (value: number, name: string) => {
-    console.log(name + ":" + value);
-    setSensorInfoState({ ...sensorInfoState, [name]: value });
+  const handleChangeSensorInfo = (
+    valueMin: number,
+    nameMin: string,
+    valueMax: number,
+    nameMax: string
+  ) => {
+    console.log(nameMin + ":" + valueMin);
+    setSensorInfoState({
+      ...sensorInfoState,
+      [nameMin]: valueMin,
+      [nameMax]: valueMax,
+    });
   };
+
+  console.log(sensorInfoState);
 
   const [chartInfoTemp, setChartInfoTemp] = useState<chartInfo>({
     options: optionsTemp,
@@ -133,17 +144,16 @@ const MainControl = () => {
   }, []);
 
   const { sensorInfo } = useAppSelector((state) => state.sensorReducer);
-  // useEffect(() => {
-  //   if (sensorInfo) {
-  //     setSensorInfoState(sensorInfo);
-
-  //     const interval = setInterval(() => {
-  //       console.log("Call interval!");
-  //       dispatch(getDataSensor());
-  //     }, 1000000);
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [sensorInfo]);
+  useEffect(() => {
+    if (sensorInfo) {
+      setSensorInfoState(sensorInfo);
+      const interval = setInterval(() => {
+        console.log("Call interval!");
+        dispatch(getDataSensor());
+      }, 50000);
+      return () => clearInterval(interval);
+    }
+  }, [sensorInfo]);
 
   const onClickChangeConfig = () => {
     dispatch(changeConfigSensor(sensorInfoState));
