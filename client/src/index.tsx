@@ -1,22 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { PersistGate } from 'redux-persist/integration/react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import 'bootstrap/js/dist/modal';
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.scss';
+import "bootstrap/js/dist/modal";
+import "bootstrap/dist/css/bootstrap.css";
+import "react-datepicker/dist/react-datepicker.css";
+import "./App.scss";
 
-import createStore from 'store/createStore';
+import createStore from "store/createStore";
 const { store, persistor } = createStore();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   // <React.StrictMode>
   <PersistGate loading={null} persistor={persistor}>
@@ -25,7 +28,7 @@ root.render(
         <App />
       </Router>
     </Provider>
-  </PersistGate>,
+  </PersistGate>
   // </React.StrictMode>
 );
 

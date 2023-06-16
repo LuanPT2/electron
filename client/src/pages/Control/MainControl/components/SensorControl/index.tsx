@@ -90,7 +90,6 @@ const SensorControl = ({
               step={0.1}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                console.log(e, "e");
                 onChangeSliderValue(e.minValue, "PHMin", e.maxValue, "PHMax");
               }}
             />

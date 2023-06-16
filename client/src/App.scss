@@ -1,5 +1,6 @@
 @import './styles/variables';
 @import './styles/function';
+
 @import './styles/reset';
 @import './styles/cores';
 @import './styles/mixins';
@@ -19,7 +20,8 @@
 @import './components/Header/styles';
 // MultiRangeSlider component
 @import './components/MultiRangeSlider/stypes';
-
+// DateTimePicker component
+@import './components/DateTimePicker/styles';
 
 /** import page */
 @import './pages/Authorization/Login/styles';

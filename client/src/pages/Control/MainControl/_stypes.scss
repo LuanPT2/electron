@@ -2,6 +2,10 @@
     position: relative;
     display: block;
     width: 1200px;
+    .search-chart{
+        position: relative;
+        display: inline-block;
+    }
     .sensor-control {
         padding: 20px;
         border-radius: 20px;

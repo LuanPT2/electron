@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SensorControl from "./components/SensorControl";
 import { SensorInfo } from "models/Sensor";
+import { SearchChartInfo } from "models/SearchChart";
 import ChartSensor from "./components/ChartSensor";
 import { chartInfo } from "models/Chart";
 import { useAppDispatch, useAppSelector } from "utils/hook";
@@ -10,9 +11,16 @@ import {
   changeConfigSensor,
 } from "pages/Control/redux/actionCreators";
 import { LABLES_CHART } from "constants/constant";
+import DateTimePicker from "components/DateTimePicker";
+import { compose } from "redux";
+import moment from "moment";
 
 const MainControl = () => {
   const dispatch = useAppDispatch();
+
+  const [searchChartInfo, setSearchChartInfo] = useState<SearchChartInfo>({
+    searchDate: "",
+  });
 
   const [sensorInfoState, setSensorInfoState] = useState<SensorInfo>({
     EnvTemp: 0,
@@ -114,7 +122,6 @@ const MainControl = () => {
     valueMax: number,
     nameMax: string
   ) => {
-    console.log(nameMin + ":" + valueMin);
     setSensorInfoState({
       ...sensorInfoState,
       [nameMin]: valueMin,
@@ -159,10 +166,30 @@ const MainControl = () => {
     dispatch(changeConfigSensor(sensorInfoState));
   };
 
+  const handleOnchangeDateSearch = (date: Date) => {
+    console.log(date);
+  };
+
   return (
     <div className="main-control-page">
       <div className=" control-title">
         <h1 className="center">Hệ Thông Giám Sát Thủy Canh</h1>
+      </div>
+      <div className="search-chart">
+        <DateTimePicker
+          className="form-employement-change-report-front-side__group-10__col4"
+          selected={
+            searchChartInfo.searchDate
+              ? moment(searchChartInfo.searchDate, "YYYY-MM-DD").toDate()
+              : ("" as unknown as Date)
+          }
+          showTimeSelect
+          onChange={(date: Date) => {
+            handleOnchangeDateSearch(date);
+          }}
+          dateFormat="yyyy.MM.dd"
+          isShowIcon={true}
+        />
       </div>
       <div className="sensor-control">
         <SensorControl
@@ -175,6 +202,7 @@ const MainControl = () => {
         <div className="chart-title">
           <h1 className="center">Biểu Đồ Lịch Sử Theo Ngày</h1>
         </div>
+        <div className="search-chart"></div>
         <div className="chart">
           <ChartSensor chartInfo={chartInfoTemp} />
         </div>
