@@ -31,12 +31,13 @@ const getDataSensorLastest = async (req, res) => {
 const getDataSensors = async (req, res) => {
     try {
         const result = await DataSensor.filter({});
+        const resultConfig = await ConfigSensor.filter({});
 
         res.send({
             statusCode: 200,
             statusMessage: 'Ok',
             message: 'Successfully retrieved all the data sensor.',
-            data: result,
+            data: {...result, ...resultConfig},
         });
     } catch (err) {
         res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });

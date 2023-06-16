@@ -11,6 +11,12 @@ class ConfigSensor {
         this._PHMax = PHMax;
     }
 
+    static async filter(options) {
+        var sql = `SELECT * FROM config WHERE 1 = 1`
+        const [rows, fields] = await pool.execute(sql);
+        return rows;
+    }
+
     static async update(options) {
         const sql = `UPDATE config SET 
             EnvTempMin = "${options.EnvTempMin}", 
@@ -19,7 +25,7 @@ class ConfigSensor {
             EnvHumiMax = "${options.EnvHumiMax}",
             PHMin = "${options.PHMin}", 
             PHMax = "${options.PHMax}"
-            WHERE id = "1"`;
+            WHERE 1=1`;
         await pool.execute(sql);
     }
 
