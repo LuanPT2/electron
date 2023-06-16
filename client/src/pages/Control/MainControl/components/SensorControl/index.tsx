@@ -2,23 +2,68 @@ import React, { useEffect, useRef, useState } from "react";
 import { SensorInfo } from "models/Sensor";
 import MultiRangeSlider, { ChangeResult } from "components/MultiRangeSlider";
 import Button from "components/Button";
+import {
+  getDataSensor,
+  changeConfigSensor,
+} from "pages/Control/redux/actionCreators";
+import { useAppDispatch, useAppSelector } from "utils/hook";
 
-type SensorControlProps = {
-  sensorInfo: SensorInfo;
-  onChangeSliderValue: (
+const SensorControl = () => {
+  const dispatch = useAppDispatch();
+  const { sensorInfo } = useAppSelector((state) => state.sensorReducer);
+  const [sensorInfoState, setSensorInfoState] = useState<SensorInfo>({
+    EnvTemp: 0,
+    EnvTempMin: 25,
+    EnvTempMax: 28,
+    EnvHumi: 0,
+    EnvHumiMin: 60,
+    EnvHumiMax: 70,
+    PH: 0,
+    PHMin: 6,
+    PHMax: 7,
+    Flow: 0,
+    StartPump: 0,
+    StaLight: 0,
+    StartCharge: 0,
+    StarDisch: 0,
+    PumTemp: 0,
+    Illu: 0,
+    StaPump: 0,
+    StaCharge: 0,
+  });
+
+  useEffect(() => {
+    dispatch(getDataSensor());
+  }, []);
+
+  const handleOnChangeSliderValue = (
     valueMin: number,
     nameMin: string,
     valueMax: number,
     nameMax: string
-  ) => void;
-  onClickChangeConfig: () => void;
-};
+  ) => {
+    setSensorInfoState({
+      ...sensorInfoState,
+      [nameMin]: valueMin,
+      [nameMax]: valueMax,
+    });
+  };
 
-const SensorControl = ({
-  sensorInfo,
-  onChangeSliderValue,
-  onClickChangeConfig,
-}: SensorControlProps) => {
+  useEffect(() => {
+    if (sensorInfo) {
+      setSensorInfoState(sensorInfo);
+      const interval = setInterval(() => {
+        console.log("Call interval!");
+        dispatch(getDataSensor());
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [sensorInfo]);
+
+  const onClickChangeConfig = () => {
+    dispatch(changeConfigSensor(sensorInfoState));
+  };
+
   return (
     <div className="sensor-control-page">
       <div className="control">
@@ -27,18 +72,18 @@ const SensorControl = ({
             <p>Nhiệt độ</p>
           </div>
           <div className="col-type control-colum2">
-            <p>{sensorInfo.EnvTemp}°C</p>
+            <p>{sensorInfoState.EnvTemp}°C</p>
           </div>
           <div className="col-type control-colum3">
             <MultiRangeSlider
               min={15}
               max={35}
-              minValue={sensorInfo.EnvTempMin}
-              maxValue={sensorInfo.EnvTempMax}
+              minValue={sensorInfoState.EnvTempMin}
+              maxValue={sensorInfoState.EnvTempMax}
               step={0.5}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(
+                handleOnChangeSliderValue(
                   e.minValue,
                   "EnvTempMin",
                   e.maxValue,
@@ -53,18 +98,18 @@ const SensorControl = ({
             <p>Độ ẩm</p>
           </div>
           <div className="col-type control-colum2">
-            <p>{sensorInfo.EnvHumi}%</p>
+            <p>{sensorInfoState.EnvHumi}%</p>
           </div>
           <div className="col-type control-colum3">
             <MultiRangeSlider
               min={0}
               max={100}
-              minValue={sensorInfo.EnvHumiMin}
-              maxValue={sensorInfo.EnvHumiMax}
+              minValue={sensorInfoState.EnvHumiMin}
+              maxValue={sensorInfoState.EnvHumiMax}
               step={1}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(
+                handleOnChangeSliderValue(
                   e.minValue,
                   "EnvHumiMin",
                   e.maxValue,
@@ -79,18 +124,23 @@ const SensorControl = ({
             <p>Độ PH</p>
           </div>
           <div className="col-type control-colum2">
-            <p>{sensorInfo.PH}</p>
+            <p>{sensorInfoState.PH}</p>
           </div>
           <div className="col-type control-colum3">
             <MultiRangeSlider
               min={1}
               max={13}
-              minValue={sensorInfo.PHMin}
-              maxValue={sensorInfo.PHMax}
+              minValue={sensorInfoState.PHMin}
+              maxValue={sensorInfoState.PHMax}
               step={0.1}
               stepOnly={true}
               onChange={(e: ChangeResult) => {
-                onChangeSliderValue(e.minValue, "PHMin", e.maxValue, "PHMax");
+                handleOnChangeSliderValue(
+                  e.minValue,
+                  "PHMin",
+                  e.maxValue,
+                  "PHMax"
+                );
               }}
             />
           </div>

@@ -5,14 +5,10 @@ var bcrypt = require("bcryptjs");
 const getDataSensorLastest = async (req, res) => {
     try {
         const dataSensor = await DataSensor.getLatestData({});
+        const resultConfig = await ConfigSensor.filter({});
         const result = {
             ...dataSensor[0],
-            EnvTempMin: '26',
-            EnvTempMax: '29',
-            EnvHumiMin: '61',
-            EnvHumiMax: '72',
-            PHMin: '6.2',
-            PHMax: '7.5'
+            ...resultConfig[0]
         }
 
         res.send({
@@ -31,13 +27,11 @@ const getDataSensorLastest = async (req, res) => {
 const getDataSensors = async (req, res) => {
     try {
         const result = await DataSensor.filter({});
-        const resultConfig = await ConfigSensor.filter({});
-
         res.send({
             statusCode: 200,
             statusMessage: 'Ok',
             message: 'Successfully retrieved all the data sensor.',
-            data: {...result, ...resultConfig},
+            data: {result},
         });
     } catch (err) {
         res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });

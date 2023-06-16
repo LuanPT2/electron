@@ -1,5 +1,19 @@
 
+
+.chart-title {
+    font-size: 1.7em; 
+ }
+
+ .charts-page {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
 .charts {
     width: 1150px;
     display: block;
+}
+.chart {
+    margin-top: 10px;
 }

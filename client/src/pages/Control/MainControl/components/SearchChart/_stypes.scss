@@ -1,0 +1,23 @@
+.search-chart {
+    position: sticky;
+    top: 70px;
+    display: inline-block;
+    background-color: rgb(171, 249, 249);
+    height: 70px;
+    width: 100%;
+    border: 3px solid rgba(216, 244, 242, 0.1);
+    border-radius:10px;
+
+    searchbtn-form {
+        position: relative;
+    }
+    .date_time {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: flex;
+    }
+}

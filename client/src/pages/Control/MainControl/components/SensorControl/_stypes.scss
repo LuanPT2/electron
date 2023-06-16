@@ -1,5 +1,8 @@
 .sensor-control-page {
     display: block;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(183, 226, 228);
 
     .control {
         display: block
@@ -36,5 +39,7 @@
         margin: auto;
     }
     
-
+    .button-changeconfig {
+        width: auto;
+    }
 }

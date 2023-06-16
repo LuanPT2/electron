@@ -23,7 +23,7 @@ router.delete('/api/users/:id', [authJwt.verifyToken], userController.deleteUser
 //router.get('/datasensors/lastest', [authJwt.verifyToken], sensorController.getDataSensorLastest);
 //router.get('/datasensors', [authJwt.verifyToken], sensorController.getDataSensors);
 router.get('/api/datasensors/lastest', sensorController.getDataSensorLastest);
-router.get('/api/datasensors',[authJwt.verifyToken], sensorController.getDataSensors);
+router.get('/api/datasensors', sensorController.getDataSensors);
 router.post('/api/datasensors/changeconfig',[authJwt.verifyToken], sensorController.changeConfigSensor);
 
 module.exports = router;
