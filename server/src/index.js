@@ -5,7 +5,6 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 var ws = require('./websocket/socket')
-var mqtt = require('./mqtt/mqtt')
 const cors = require('cors');
 
 app.use(cors({
@@ -28,3 +27,5 @@ app.get('/socket', function(request, response){
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`App is running in PORT: ${port}`));
+
+var mqtt = require('./mqtt/mqtt')

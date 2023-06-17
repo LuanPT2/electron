@@ -1,7 +1,7 @@
 const pool = require('../databases/mysql.db');
 
 class ConfigSensor {
-    constructor(EnvTempMin, EnvTempMax, EnvHumiMin, EnvHumiMax, PHMin, PHMax) {
+    constructor(EnvTempMin, EnvTempMax, EnvHumiMin, EnvHumiMax, PHMin, PHMax, StaLightMin, StaLightMax) {
         this._id = null;
         this._EnvTempMin = EnvTempMin;
         this._EnvTempMax = EnvTempMax;
@@ -24,7 +24,10 @@ class ConfigSensor {
             EnvHumiMin = "${options.EnvHumiMin}", 
             EnvHumiMax = "${options.EnvHumiMax}",
             PHMin = "${options.PHMin}", 
-            PHMax = "${options.PHMax}"
+            PHMax = "${options.PHMax}",
+            StaLightMin = "${options.StaLightMin}", 
+            StaLightMax = "${options.StaLightMax}",
+            status = "${options.status}"
             WHERE 1=1`;
         await pool.execute(sql);
     }
@@ -57,7 +60,18 @@ class ConfigSensor {
         return this._PHMax;
     }
 
-    
+    get StaLightMin() {
+        return this._StaLightMin;
+    }
+
+    get StaLightMax() {
+        return this._StaLightMax;
+    }
+
+    get status() {
+        return this._status;
+    }
+
     set id(id) {
         return this._id;
     }
@@ -84,6 +98,18 @@ class ConfigSensor {
 
     set PHMax(PHMax) {
         this._PHMax = PHMax;
+    }
+
+    set StaLightMax(StaLightMax) {
+        this._StaLightMax = StaLightMax;
+    }
+
+    set StaLightMin(StaLightMin) {
+        this._StaLightMin = StaLightMin;
+    }
+
+    set status(status) {
+        this._status = status;
     }
 }
 

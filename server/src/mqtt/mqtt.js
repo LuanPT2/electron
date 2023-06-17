@@ -1,5 +1,7 @@
 //////////Khai báo module mqtt
 var mqtt = require('mqtt');
+const DataSensor = require('../models/sensor.model');
+const ConfigSensor = require('../models/config.model');
 
 //Khai báo tham số kết nối đến Broker
 var options = {
@@ -14,8 +16,15 @@ var client = mqtt.connect('ws://ngoinhaiot.com', options)
 client.on('connect', function () {
 
     //Subscribe đến topic sensor/update để nhận dữ liệu cảm biến
-    client.subscribe('danghoanghieu/control', function (err) {
-        console.log("Subscribed to sensor/update topic");
+    client.subscribe('danghoanghieu/pub', function (err) {
+        console.log("Subscribed to pub topic");
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    client.subscribe('danghoanghieu/data', function (err) {
+        console.log("Subscribed to data topic");
         if (err) {
             console.log(err);
         }
@@ -26,11 +35,42 @@ client.on('connect', function () {
 //hàm này)
 client.on('message', function (topic, message) {
     var msg_str = message.toString();
+    const data = JSON.parse(msg_str);
     //In ra console để debug
     console.log("[Topic arrived] " + topic);
     console.log("[Message arrived] " + msg_str);
-})
+    //processing(data);
+    console.log("End message!")
+});
 
+const processing = async (data) => {
+    await ConfigSensor.update({...data, status:0});
+};
+
+// run a loop every 2 seconds:
+setInterval(loop, 1000);
+
+function loop() {
+    // if the client is connected, publish:
+    if (client.connected) {
+        sendData();
+   }
+}
+
+const sendData = async (data) => {
+    const resultConfig = await ConfigSensor.filter({});
+    if(resultConfig != null & resultConfig[0].status == '1') {
+        // publish to broker:
+        client.publish('danghoanghieu/control',  JSON.stringify(resultConfig[0]));
+    }
+};
+
+// handler for mqtt disconnect event:
+client.on('close', onDisconnect);
+function onDisconnect() {
+    console.log("Disconnect! ");
+  }
+  
 // Handle errors
 client.on("error", function (error) {
     console.log("Error occurred: " + error);
