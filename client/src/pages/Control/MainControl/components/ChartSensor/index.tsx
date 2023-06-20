@@ -54,12 +54,12 @@ const ChartSensor = () => {
     };
   };
 
-  const objectData = (labels, data) => {
+  const objectData = (labels, lineName, data) => {
     return {
       labels,
       datasets: [
         {
-          label: "Nhiệt độ",
+          label: lineName,
           data: data,
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgba(53, 162, 235, 0.5)",
@@ -79,6 +79,7 @@ const ChartSensor = () => {
           options={options("Biểu đồ nhiệt độ trong ngày")}
           data={objectData(
             listDataChartInfo.lables,
+            "Nhiệt độ",
             listDataChartInfo.envTemps
           )}
         />
@@ -88,6 +89,7 @@ const ChartSensor = () => {
           options={options("Biểu đồ độ ẩm trong ngày")}
           data={objectData(
             listDataChartInfo.lables,
+            "Độ ẩm",
             listDataChartInfo.envHumis
           )}
         />
@@ -95,7 +97,11 @@ const ChartSensor = () => {
       <div className="chart">
         <Line
           options={options("Biểu đồ độ PH trong ngày")}
-          data={objectData(listDataChartInfo.lables, listDataChartInfo.pHs)}
+          data={objectData(
+            listDataChartInfo.lables,
+            "PH",
+            listDataChartInfo.pHs
+          )}
         />
       </div>
       <div className="chart">
@@ -103,6 +109,7 @@ const ChartSensor = () => {
           options={options("Biểu đồ độ sáng trong ngày")}
           data={objectData(
             listDataChartInfo.lables,
+            "Độ sáng",
             listDataChartInfo.staLights
           )}
         />
