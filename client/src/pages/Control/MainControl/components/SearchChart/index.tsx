@@ -1,17 +1,27 @@
 import DateTimePicker from "components/DateTimePicker";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "utils/hook";
-import { SearchChartInfo } from "models/SearchChart";
+import { SearchRequestPayload } from "models/SearchChart";
 import React, { useState, useEffect, useRef } from "react";
+import { searchChartGetData } from "pages/Control/redux/action/chartActionCreators";
 
 const SearchChart = () => {
   const dispatch = useAppDispatch();
-  const [searchChartInfo, setSearchChartInfo] = useState<SearchChartInfo>({
-    searchDate: "",
-  });
 
-  const handleOnchangeDateSearch = (date: Date) => {
-    console.log(date);
+  const [searchChartStateInfo, setSearchChartStateInfo] =
+    useState<SearchRequestPayload>({
+      searchDate: "",
+    });
+
+  useEffect(() => {
+    dispatch(searchChartGetData(searchChartStateInfo));
+  }, [searchChartStateInfo]);
+
+  const handleOnchangeDateSearch = (date: string) => {
+    setSearchChartStateInfo({
+      ...searchChartStateInfo,
+      searchDate: date,
+    });
   };
 
   return (
@@ -20,15 +30,16 @@ const SearchChart = () => {
         <DateTimePicker
           className="form-employement-change-report-front-side__group-10__col4"
           selected={
-            searchChartInfo.searchDate
-              ? moment(searchChartInfo.searchDate, "YYYY-MM-DD").toDate()
+            searchChartStateInfo.searchDate
+              ? moment(searchChartStateInfo.searchDate, "YYYY-MM-DD").toDate()
               : ("" as unknown as Date)
           }
-          showTimeSelect
           onChange={(date: Date) => {
-            handleOnchangeDateSearch(date);
+            handleOnchangeDateSearch(
+              moment(date).format("YYYY-MM-DD").toString()
+            );
           }}
-          dateFormat="yyyy.MM.dd"
+          dateFormat="yyyy-MM-dd"
           isShowIcon={true}
         />
       </div>

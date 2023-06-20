@@ -1,6 +1,6 @@
-import * as actionTypes from 'pages/Control/redux/actionTypes';
+import * as actionTypes from 'pages/Control/redux/action/actionTypes';
 
-export type InitialStateAuth = {
+export type InitialStateSensor = {
   type: string;
   isProcessing: boolean;
   statusCode: string;
@@ -18,9 +18,11 @@ export type SensorInfo = {
   PH: number;
   PHMin: number;
   PHMax: number;
+  StaLight: number;
+  StaLightMin: number;
+  StaLightMax: number;
   Flow: number;
   StartPump: number;
-  StaLight: number;
   StartCharge: number;
   StarDisch: number;
   PumTemp: number;
@@ -39,9 +41,11 @@ export type sensorInfoPayload = {
   PH: number;
   PHMin: number;
   PHMax: number;
+  StaLight: number;
+  StaLightMin: number;
+  StaLightMax: number;
   Flow: number;
   StartPump: number;
-  StaLight: number;
   StartCharge: number;
   StarDisch: number;
 };
@@ -53,6 +57,24 @@ export type GetDataSensorSuccessPayload = {
    data: {
      sensorInfo: SensorInfo;
   }
+};
+
+export type GetDataSensorFailedPayload = {
+  code: string;
+  message: string;
+};
+
+export type ChangeDataSensorSuccessPayload = {
+  statusCode: string;
+  statusMessage: string;
+  message: string;
+  data: {
+    isSuccess: boolean;
+ }
+};
+
+export type errorConnectServer = {
+  message: string;
 };
 
 export type SensorApiFalsePayload = {
@@ -70,7 +92,7 @@ export type SensorGetDataSuccessAction = {
 };
 
 export type SensorApiFalseAction = {
-  type: typeof actionTypes.SENSOR_API_FALSE;
+  type: typeof actionTypes.SENSOR_CHANGE_DATA_FALSE;
   payload: SensorApiFalsePayload;
 };
 
@@ -94,6 +116,6 @@ export type changeDataSensorSuccessPayload = {
 
 export type RequestActions =
   | SensorGetDataRequestAction
+  | SensorGetDataSuccessAction
   | SensorApiFalseAction
-  | SensorChangeDataSensorSuccessAction
-  | SensorGetDataSuccessAction;
+  | SensorChangeDataSensorSuccessAction;

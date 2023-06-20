@@ -5,7 +5,7 @@ import Button from "components/Button";
 import {
   getDataSensor,
   changeConfigSensor,
-} from "pages/Control/redux/actionCreators";
+} from "pages/Control/redux/action/actionCreators";
 import { useAppDispatch, useAppSelector } from "utils/hook";
 
 const SensorControl = () => {
@@ -21,9 +21,11 @@ const SensorControl = () => {
     PH: 0,
     PHMin: 6,
     PHMax: 7,
+    StaLight: 0,
+    StaLightMin: 0,
+    StaLightMax: 0,
     Flow: 0,
     StartPump: 0,
-    StaLight: 0,
     StartCharge: 0,
     StarDisch: 0,
     PumTemp: 0,
@@ -140,6 +142,32 @@ const SensorControl = () => {
                   "PHMin",
                   e.maxValue,
                   "PHMax"
+                );
+              }}
+            />
+          </div>
+        </div>
+        <div className="row-device">
+          <div className="col-type control-colum1">
+            <p>Độ Sáng</p>
+          </div>
+          <div className="col-type control-colum2">
+            <p>{sensorInfoState.StaLight}</p>
+          </div>
+          <div className="col-type control-colum3">
+            <MultiRangeSlider
+              min={1}
+              max={100}
+              minValue={sensorInfoState.StaLightMin}
+              maxValue={sensorInfoState.StaLightMax}
+              step={1}
+              stepOnly={true}
+              onChange={(e: ChangeResult) => {
+                handleOnChangeSliderValue(
+                  e.minValue,
+                  "StaLightMin",
+                  e.maxValue,
+                  "StaLightMax"
                 );
               }}
             />

@@ -1,5 +1,5 @@
 import ROUTERS from "constants/routers";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import {
   Navigate,
   Routes,
@@ -14,6 +14,8 @@ import { useAppDispatch, useAppSelector } from "utils/hook";
 import PrivateRouter from "./PrivateRouter";
 import NotFound from "components/NotFound";
 import MainLayout from "components/Layout";
+import { logoutRequest } from "pages/Authorization/redux/actionCreators";
+import Modal from "components/Modal";
 
 const Router = () => {
   const [isAuth, setIsAuth] = useState(true);
@@ -34,38 +36,47 @@ const Router = () => {
     }
   }, [accessToken, token]);
 
-  useEffect(() => {
-    if (pathname?.includes("form")) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-    //navigate(toPath);
-    return;
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (pathname?.includes("form")) {
+  //     window.scrollTo({
+  //       top: 0,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  //   navigate(toPath);
+  //   return;
+  // }, [pathname]);
 
   const reqInterceptor = API.axiosInstance.interceptors.request.use(
     (config) => {
       return config;
     },
-    (err) => {
-      return Promise.reject(err);
+    (error) => {
+      return Promise.reject(error);
     }
   );
 
   const resInterceptor = API.axiosInstance.interceptors.response.use(
     (response) => {
-      return response;
+      if (
+        response.status === 200 ||
+        response.status === 201 ||
+        response.status === 202 ||
+        response.status === 204
+      ) {
+        return response;
+      }
+      return Promise.reject(response);
     },
     (error) => {
       const status = error.response.status;
       if (
         error?.message == "Network Error" ||
         status === 401 ||
+        status === 404 ||
         status === 500
       ) {
-        //dispatch(logoutRequest()); TODO
+        dispatch(logoutRequest());
         return Promise.reject(error);
       }
       return Promise.reject(error);

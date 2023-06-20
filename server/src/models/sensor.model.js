@@ -23,7 +23,14 @@ class DataSensor {
     }
 
     static async filter(options) {
-        var sql = `SELECT * FROM sensor_history WHERE 1 =1  ORDER BY regist_dt DESC limit 20`
+        var datet=  options.searchDate;
+        var sql = `SELECT AVG(s.EnvTemp) as EnvTemp, AVG(s.EnvHumi) as EnvHumi, AVG(s.PH) as PH, AVG(s.StaLight) as StaLight, TIME_FORMAT(s.regist_dt, '%H:%i') as lable
+        FROM sensor_history s
+        WHERE 1=1 and 
+            Date(s.regist_dt) = '${options.searchDate}'
+        GROUP BY lable
+        ORDER BY lable`;
+
         const [rows, fields] = await pool.execute(sql);
         return rows;
     }

@@ -26,12 +26,32 @@ const getDataSensorLastest = async (req, res) => {
 
 const getDataSensors = async (req, res) => {
     try {
-        const result = await DataSensor.filter({});
+        const result = await DataSensor.filter(req.query);
+        var envTemps = []; 
+        var envHumis = []; 
+        var staLights = []; 
+        var pHs = []; 
+        var lables = []; 
+
+        result.forEach(element => {
+            envTemps.push(element.EnvTemp);
+            envHumis.push(element.envHumi);
+            staLights.push(element.StaLight);
+            pHs.push(element.PH);
+            lables.push(element.lable);
+        });
+
         res.send({
             statusCode: 200,
             statusMessage: 'Ok',
             message: 'Successfully retrieved all the data sensor.',
-            data: {result},
+            data: {
+                listDataChartInfo : {envTemps:  envTemps,
+                envHumis: envHumis,
+                staLights: staLights, 
+                pHs: pHs,
+                lables:lables}
+            },
         });
     } catch (err) {
         res.status(500).send({ statusCode: 500, statusMessage: 'Internal Server Error', message: null, data: null });

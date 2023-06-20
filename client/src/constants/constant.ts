@@ -43,7 +43,8 @@ export const COLORS = {
 };
 //#endregion
 
-export const LABLES_CHART = [
+
+export const labels = [
   "0:00",
   "0:10",
   "0:20",

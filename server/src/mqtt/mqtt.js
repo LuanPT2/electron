@@ -34,13 +34,17 @@ client.on('connect', function () {
 //Khai báo Subscribe Callback Handler (Khi nhận được dữ liệu từ các topic đã subscribe sẽ thực thi
 //hàm này)
 client.on('message', function (topic, message) {
-    var msg_str = message.toString();
-    const data = JSON.parse(msg_str);
-    //In ra console để debug
-    console.log("[Topic arrived] " + topic);
-    console.log("[Message arrived] " + msg_str);
-    //processing(data);
-    console.log("End message!")
+    try {
+        var msg_str = message.toString();
+        const data = JSON.parse(msg_str);
+        //In ra console để debug
+        console.log("[Topic arrived] " + topic);
+        console.log("[Message arrived] " + msg_str);
+        //processing(data);
+        console.log("End message!")
+    } catch(err) {
+        console.log(err);
+    }
 });
 
 const processing = async (data) => {
@@ -58,10 +62,14 @@ function loop() {
 }
 
 const sendData = async (data) => {
-    const resultConfig = await ConfigSensor.filter({});
-    if(resultConfig != null & resultConfig[0].status == '1') {
-        // publish to broker:
-        client.publish('danghoanghieu/control',  JSON.stringify(resultConfig[0]));
+    try {
+        const resultConfig = await ConfigSensor.filter({});
+        if(resultConfig != null & resultConfig[0].status == '1') {
+            // publish to broker:
+            client.publish('danghoanghieu/control',  JSON.stringify(resultConfig[0]));
+        }
+    } catch(err) {
+        console.log(err);
     }
 };
 

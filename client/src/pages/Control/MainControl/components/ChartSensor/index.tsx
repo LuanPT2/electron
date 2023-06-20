@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "utils/hook";
 import { AppState } from "store/rootReducers";
-import { LABLES_CHART } from "constants/constant";
+import { labels } from "constants/constant";
 import { compose } from "redux";
 import { Line } from "react-chartjs-2";
 import SearchChart from "../SearchChart";
@@ -31,96 +31,42 @@ ChartJS.register(
 
 const ChartSensor = () => {
   const dispatch = useAppDispatch();
+  const { listDataChartInfo } = useAppSelector(
+    (state) => state.chartsSensorReducer
+  );
 
-  const optionsTemp = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
+  useEffect(() => {
+    console.log(listDataChartInfo);
+  }, [listDataChartInfo]);
+
+  const options = (message: string) => {
+    return {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top" as const,
+        },
+        title: {
+          display: true,
+          text: message,
+        },
       },
-      title: {
-        display: true,
-        text: "Biểu đồ nhiệt độ trong ngày",
-      },
-    },
+    };
   };
 
-  const optionsHumi = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Biểu đồ độ ẩm trong ngày",
-      },
-    },
+  const objectData = (labels, data) => {
+    return {
+      labels,
+      datasets: [
+        {
+          label: "Nhiệt độ",
+          data: data,
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: "rgba(53, 162, 235, 0.5)",
+        },
+      ],
+    };
   };
-
-  const optionsPh = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Biểu đồ PH trong ngày",
-      },
-    },
-  };
-
-  const dataTemp = {
-    LABLES_CHART,
-    datasets: [
-      {
-        label: "Nhiệt độ",
-        data: [],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
-
-  const dataHumi = {
-    LABLES_CHART,
-    datasets: [
-      {
-        label: "Độ ẩm",
-        data: [],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
-
-  const dataPh = {
-    LABLES_CHART,
-    datasets: [
-      {
-        label: "Ph",
-        data: [],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
-
-  const [chartInfoTemp, setChartInfoTemp] = useState<chartInfo>({
-    options: optionsTemp,
-    data: dataTemp,
-  });
-
-  const [chartInfoHumi, setChartInfoHumi] = useState<chartInfo>({
-    options: optionsHumi,
-    data: dataHumi,
-  });
-
-  const [chartInfoPh, setChartInfoPh] = useState<chartInfo>({
-    options: optionsPh,
-    data: dataPh,
-  });
 
   return (
     <div className="charts-page">
@@ -129,13 +75,37 @@ const ChartSensor = () => {
       </div>
       <SearchChart />
       <div className="chart">
-        <Line options={chartInfoTemp.options} data={chartInfoTemp.data} />
+        <Line
+          options={options("Biểu đồ nhiệt độ trong ngày")}
+          data={objectData(
+            listDataChartInfo.lables,
+            listDataChartInfo.envTemps
+          )}
+        />
       </div>
       <div className="chart">
-        <Line options={chartInfoHumi.options} data={chartInfoHumi.data} />
+        <Line
+          options={options("Biểu đồ độ ẩm trong ngày")}
+          data={objectData(
+            listDataChartInfo.lables,
+            listDataChartInfo.envHumis
+          )}
+        />
       </div>
       <div className="chart">
-        <Line options={chartInfoPh.options} data={chartInfoPh.data} />
+        <Line
+          options={options("Biểu đồ độ PH trong ngày")}
+          data={objectData(listDataChartInfo.lables, listDataChartInfo.pHs)}
+        />
+      </div>
+      <div className="chart">
+        <Line
+          options={options("Biểu đồ độ sáng trong ngày")}
+          data={objectData(
+            listDataChartInfo.lables,
+            listDataChartInfo.staLights
+          )}
+        />
       </div>
     </div>
   );

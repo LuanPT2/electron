@@ -1,7 +1,7 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from '../action/actionTypes';
 import * as actionPayloadTypes from 'models/Sensor';
 
-export const initialStateAuth: actionPayloadTypes.InitialStateAuth = {
+export const initialStateAuth: actionPayloadTypes.InitialStateSensor = {
   type: '',
   isProcessing: false,
   statusCode: '',
@@ -10,7 +10,7 @@ export const initialStateAuth: actionPayloadTypes.InitialStateAuth = {
 };
 
 const sensorReducer = (
-  state: actionPayloadTypes.InitialStateAuth = initialStateAuth,
+  state: actionPayloadTypes.InitialStateSensor = initialStateAuth,
   action: actionPayloadTypes.RequestActions,
 ) => {
   switch (action.type) {
@@ -36,12 +36,11 @@ const sensorReducer = (
             isProcessing: true
           };
 
-    case actionTypes.SENSOR_API_FALSE:
+    case actionTypes.SENSOR_CHANGE_DATA_FALSE:
       return {
         ...state,
         type: action.type,
         isProcessing: false,
-        sensorInfo: {} as actionPayloadTypes.SensorInfo,
       };
 
     default:
