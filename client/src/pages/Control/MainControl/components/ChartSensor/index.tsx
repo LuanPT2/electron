@@ -96,6 +96,16 @@ const ChartSensor = () => {
       </div>
       <div className="chart">
         <Line
+          options={options("Biểu đồ độ sáng trong ngày")}
+          data={objectData(
+            listDataChartInfo.lables,
+            "Độ sáng",
+            listDataChartInfo.envIllus
+          )}
+        />
+      </div>
+      <div className="chart">
+        <Line
           options={options("Biểu đồ độ PH trong ngày")}
           data={objectData(
             listDataChartInfo.lables,
@@ -106,11 +116,11 @@ const ChartSensor = () => {
       </div>
       <div className="chart">
         <Line
-          options={options("Biểu đồ độ sáng trong ngày")}
+          options={options("Biểu đồ mực nước trong ngày")}
           data={objectData(
             listDataChartInfo.lables,
-            "Độ sáng",
-            listDataChartInfo.staLights
+            "Mực nước",
+            listDataChartInfo.waters
           )}
         />
       </div>

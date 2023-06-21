@@ -10,44 +10,46 @@ export type InitialStateSensor = {
 
 export type SensorInfo = {
   EnvTemp: number;
-  EnvTempMin: number;
-  EnvTempMax: number;
+  minTemp: number;
+  maxTemp: number;
   EnvHumi: number;
-  EnvHumiMin: number;
-  EnvHumiMax: number;
+  minHumi: number;
+  maxHumi: number;
+  EnvIllu: number;
+  minIllu: number;
+  maxIllu: number;
+  Water: number;
+  minWater: number;
+  maxWater: number;
   PH: number;
-  PHMin: number;
-  PHMax: number;
-  StaLight: number;
-  StaLightMin: number;
-  StaLightMax: number;
-  Flow: number;
-  StartPump: number;
-  StartCharge: number;
-  StarDisch: number;
-  PumTemp: number;
-  Illu: number;
+  minPH: number;
+  maxPH: number;
   StaPump: number;
-  StaCharge:number;
+  StaLight: number;
+  StarDisch: number;
+  StaCharge: number;
 };
 
 export type sensorInfoPayload = {
   EnvTemp: number;
-  EnvTempMin: number;
-  EnvTempMax: number;
+  minTemp: number;
+  maxTemp: number;
   EnvHumi: number;
-  EnvHumiMin: number;
-  EnvHumiMax: number;
+  minHumi: number;
+  maxHumi: number;
+  EnvIllu: number;
+  minIllu: number;
+  maxIllu: number;
+  Water: number;
+  minWater: number;
+  maxWater: number;
   PH: number;
-  PHMin: number;
-  PHMax: number;
+  minPH: number;
+  maxPH: number;
+  StaPump: number;
   StaLight: number;
-  StaLightMin: number;
-  StaLightMax: number;
-  Flow: number;
-  StartPump: number;
-  StartCharge: number;
   StarDisch: number;
+  StaCharge: number;
 };
 
 export type GetDataSensorSuccessPayload = {

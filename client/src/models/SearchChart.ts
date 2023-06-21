@@ -12,8 +12,9 @@ export type InitialStateDataSearchChart = {
 export type ListDataChartInfo = {
   envTemps: string[],
   envHumis: string[],
-  staLights: string[],
+  envIllus: string[],
   pHs: string[],
+  waters: string[],
   lables: string[]
 };
 

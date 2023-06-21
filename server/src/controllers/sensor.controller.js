@@ -29,15 +29,17 @@ const getDataSensors = async (req, res) => {
         const result = await DataSensor.filter(req.query);
         var envTemps = []; 
         var envHumis = []; 
-        var staLights = []; 
-        var pHs = []; 
+        var envIllus = []; 
+        var pHs = [];
+        var waters = []; 
         var lables = []; 
 
         result.forEach(element => {
             envTemps.push(element.EnvTemp);
-            envHumis.push(element.envHumi);
-            staLights.push(element.StaLight);
+            envHumis.push(element.EnvHumi);
+            envIllus.push(element.EnvIllu);
             pHs.push(element.PH);
+            waters.push(element.Water);
             lables.push(element.lable);
         });
 
@@ -46,11 +48,14 @@ const getDataSensors = async (req, res) => {
             statusMessage: 'Ok',
             message: 'Successfully retrieved all the data sensor.',
             data: {
-                listDataChartInfo : {envTemps:  envTemps,
-                envHumis: envHumis,
-                staLights: staLights, 
-                pHs: pHs,
-                lables:lables}
+                listDataChartInfo : {
+                    envTemps:  envTemps,
+                    envHumis: envHumis,
+                    envIllus: envIllus,
+                    pHs: pHs,
+                    waters: waters,
+                    lables: lables
+                }
             },
         });
     } catch (err) {
