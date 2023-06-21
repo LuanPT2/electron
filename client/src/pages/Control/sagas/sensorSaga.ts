@@ -29,6 +29,7 @@ function* getDataSensorLastest() {
 
 function* changeDataSensorConfig(payload: actionPayloadTypes.SensorChangeDataSensorRequestAction) {
     try {
+
       const response = yield call(() => API.post(ROUTES.API_SENSOR_CHANGE_CONFIG, payload));
   
       const { data } = response;

@@ -54,7 +54,6 @@ const SensorControl = () => {
     if (sensorInfo) {
       setSensorInfoState(sensorInfo);
       const interval = setInterval(() => {
-        console.log("Call interval!");
         dispatch(getDataSensor());
       }, 5000);
       return () => clearInterval(interval);
@@ -190,9 +189,9 @@ const SensorControl = () => {
               onChange={(e: ChangeResult) => {
                 handleOnChangeSliderValue(
                   e.minValue,
-                  "minPH",
+                  "minWater",
                   e.maxValue,
-                  "maxPH"
+                  "maxWater"
                 );
               }}
             />
