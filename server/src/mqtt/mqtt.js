@@ -23,8 +23,15 @@ client.on('connect', function () {
         }
     })
 
-    client.subscribe('danghoanghieu/data', function (err) {
-        console.log("Subscribed to data topic");
+    client.subscribe('danghoanghieu/dataSensor', function (err) {
+        console.log("Subscribed to dataSensor topic");
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    client.subscribe('danghoanghieu/subDevice', function (err) {
+        console.log("Subscribed to Device topic");
         if (err) {
             console.log(err);
         }
@@ -36,19 +43,29 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
     try {
         var msg_str = message.toString();
-        const data = JSON.parse(msg_str);
+        
         //In ra console để debug
         console.log("[Topic arrived] " + topic);
         console.log("[Message arrived] " + msg_str);
-        //processing(data);
+
+        processing(topic, msg_str);
         console.log("End message!")
     } catch(err) {
         console.log(err);
     }
 });
 
-const processing = async (data) => {
-    await ConfigSensor.update({...data, status:0});
+const processing = async (topic, msg_str) => {
+    const data = JSON.parse(msg_str);
+    if(topic == "danghoanghieu/pub") {
+        await ConfigSensor.updateSensor({...data, status:0});
+    } else if (topic == "danghoanghieu/dataSensor") {
+        const { EnvTemp, EnvHumi, EnvIllu, Water, PH } = data;
+        var senser =  new  DataSensor(EnvTemp, EnvHumi, EnvIllu, Water, PH);
+        senser.save();//{"EnvTemp":29, "EnvHumi":80, "EnvIllu":7, "PH":5, "Water":12}
+    } else if (topic == "danghoanghieu/subDevice") {
+        ConfigSensor.updateDevice({...data, status:0});
+    }
 };
 
 // run a loop every 2 seconds:

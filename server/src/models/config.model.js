@@ -1,14 +1,24 @@
 const pool = require('../databases/mysql.db');
 
 class ConfigSensor {
-    constructor(EnvTempMin, EnvTempMax, EnvHumiMin, EnvHumiMax, PHMin, PHMax, StaLightMin, StaLightMax) {
+    constructor(minTemp, maxTemp, minHumi, maxHumi, minWater, maxWater, minIllu, maxIllu, minPH, maxPH,
+         StaPump, StaLight, StarDisch, StaCharge) {
         this._id = null;
-        this._EnvTempMin = EnvTempMin;
-        this._EnvTempMax = EnvTempMax;
-        this._EnvHumiMin = EnvHumiMin;
-        this._EnvHumiMax = EnvHumiMax;
-        this._PHMin = PHMin;
-        this._PHMax = PHMax;
+        this._minTemp = minTemp;
+        this._maxTemp = maxTemp;
+        this._minHumi = minHumi;
+        this._maxHumi = maxHumi;
+        this._minWater = minWater;
+        this._maxWater = maxWater;
+        this._minIllu = minIllu;
+        this._maxIllu = maxIllu;
+        this._minPH = minPH;
+        this._maxPH = maxPH;
+        this._StaPump = StaPump;
+        this._StaLight = StaLight;
+        this._StarDisch = StarDisch;
+        this._StaCharge = StaCharge;
+
     }
 
     static async filter(options) {
@@ -17,16 +27,29 @@ class ConfigSensor {
         return rows;
     }
 
-    static async update(options) {
-        const sql = `UPDATE config SET 
-            EnvTempMin = "${options.EnvTempMin}", 
-            EnvTempMax = "${options.EnvTempMax}",
-            EnvHumiMin = "${options.EnvHumiMin}", 
-            EnvHumiMax = "${options.EnvHumiMax}",
-            PHMin = "${options.PHMin}", 
-            PHMax = "${options.PHMax}",
-            StaLightMin = "${options.StaLightMin}", 
-            StaLightMax = "${options.StaLightMax}",
+    static async updateSensor(options) {
+        const sql = `UPDATE config SET
+            minTemp = "${options.minTemp}", 
+            maxTemp = "${options.maxTemp}",
+            minHumi = "${options.minHumi}", 
+            maxHumi = "${options.maxHumi}",
+            minWater = "${options.minWater}", 
+            maxWater = "${options.maxWater}",
+            minIllu = "${options.minIllu}", 
+            maxIllu = "${options.maxIllu}",
+            minPH = "${options.minPH}",
+            maxPH = "${options.maxPH}",
+            status = "${options.status}"
+            WHERE 1=1`;
+        await pool.execute(sql);
+    }
+
+    static async updateDevice(options) {
+        const sql = `UPDATE config SET
+            StaPump = "${options.StaPump}",
+            StaLight = "${options.StaLight}",
+            StarDisch = "${options.StarDisch}",
+            StaCharge = "${options.StaCharge}",
             status = "${options.status}"
             WHERE 1=1`;
         await pool.execute(sql);
@@ -36,76 +59,118 @@ class ConfigSensor {
         return this._id;
     }
 
-    get EnvTempMin() {
-        return this._EnvTempMin;
+    get minTemp() {
+        return this._minTemp;
     }
 
-    get EnvTempMax() {
-        return this._EnvTempMax;
+    get maxTemp() {
+        return this._maxTemp;
     }
 
-    get EnvHumiMin() {
-        return this._EnvHumiMin;
+    get minHumi() {
+        return this._minHumi;
     }
 
-    get EnvHumiMax() {
-        return this._EnvHumiMax;
+    get maxHumi() {
+        return this._maxHumi;
     }
 
-    get PHMin() {
-        return this._PHMin;
+    get minWater() {
+        return this._minWater;
     }
 
-    get PHMax() {
-        return this._PHMax;
+    get maxWater() {
+        return this._maxWater;
     }
 
-    get StaLightMin() {
-        return this._StaLightMin;
+    get minPH() {
+        return this._minPH;
     }
 
-    get StaLightMax() {
-        return this._StaLightMax;
+    get maxPH() {
+        return this._maxPH;
+    }
+
+    get StaPump() {
+        return this._StaPump;
+    }
+
+    get StaLight() {
+        return this._StaLight;
+    }
+
+    get StarDisch() {
+        return this._StarDisch;
+    }
+
+    get StaCharge() {
+        return this._StaCharge;
     }
 
     get status() {
         return this._status;
     }
 
+
+
     set id(id) {
-        return this._id;
+        this._id = id;
     }
 
-    set EnvTempMin(EnvTempMin) {
-        return this._EnvTempMin;
+    set minTemp(minTemp) {
+        this._minTemp = minTemp;
     }
 
-    set EnvTempMax(EnvTempMax) {
-        return this._EnvTempMax;
+    set maxTemp(maxTemp) {
+        this._maxTemp = maxTemp;
     }
 
-    set EnvHumiMin(EnvHumiMin) {
-        this._EnvHumiMin = EnvHumiMin;
+    set minHumi(minHumi) {
+        this._minHumi = minHumi;
     }
 
-    set EnvHumiMax(EnvHumiMax) {
-        this._EnvHumiMax = EnvHumiMax;
+    set maxHumi(maxHumi) {
+        this._maxHumi = maxHumi;
     }
 
-    set PHMin(PHMin) {
-        this._PHMin = PHMin;
+    set minWater(minWater) {
+        this._minWater = minWater;
     }
 
-    set PHMax(PHMax) {
-        this._PHMax = PHMax;
+    set maxWater(maxWater) {
+        this._maxWater = maxWater;
     }
 
-    set StaLightMax(StaLightMax) {
-        this._StaLightMax = StaLightMax;
+    set minIllu(minIllu) {
+        this._minIllu = minIllu;
     }
 
-    set StaLightMin(StaLightMin) {
-        this._StaLightMin = StaLightMin;
+    set maxIllu(maxIllu) {
+        this._maxIllu = maxIllu;
+    }
+
+    set minPH(minPH) {
+        this._minPH = minPH;
+    }
+
+    set maxPH(maxPH) {
+        this._maxPH = maxPH;
+    }
+
+    set StaPump(StaPump) {
+        this._StaPump = StaPump;
+    }
+
+    set StaLight(StaLight) {
+        this._StaLight = StaLight;
+    }
+    
+    set StarDisch(StarDisch) {
+        this._StarDisch = StarDisch;
+    }
+
+    set StaCharge(StaCharge) {
+        this._StaCharge = StaCharge;
     }
 
     set status(status) {

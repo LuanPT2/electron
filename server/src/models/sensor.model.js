@@ -1,18 +1,13 @@
 const pool = require('../databases/mysql.db');
 
 class DataSensor {
-    constructor(EnvTemp, EnvHumi, PumTemp, Flow, PH, Illu, StaPump, StaLight, StarDisch, StaCharge) {
+    constructor(EnvTemp, EnvHumi, EnvIllu, Water, PH ) {
         this._id = null;
         this._EnvTemp = EnvTemp;
         this._EnvHumi = EnvHumi;
-        this._PumTemp = PumTemp;
-        this._Flow = Flow;
+        this._EnvIllu = EnvIllu;
+        this._Water = Water;
         this._PH = PH;
-        this._Illu = Illu;
-        this._StaPump = StaPump;
-        this._StaLight = StaLight;
-        this._StarDisch = StarDisch;
-        this._StaCharge = StaCharge;
         this._registDt = null;
     }
 
@@ -24,7 +19,13 @@ class DataSensor {
 
     static async filter(options) {
         var datet=  options.searchDate;
-        var sql = `SELECT AVG(s.EnvTemp) as EnvTemp, AVG(s.EnvHumi) as EnvHumi, AVG(s.PH) as PH, AVG(s.StaLight) as StaLight, TIME_FORMAT(s.regist_dt, '%H:%i') as lable
+        var sql = `SELECT
+         AVG(s.EnvTemp) as EnvTemp,
+         AVG(s.EnvHumi) as EnvHumi,
+         AVG(s.EnvIllu) as EnvIllu,
+         AVG(s.Water) as Water,
+         AVG(s.PH) as PH,
+         TIME_FORMAT(s.regist_dt, '%H:%i') as lable
         FROM sensor_history s
         WHERE 1=1 and 
             Date(s.regist_dt) = '${options.searchDate}'
@@ -36,10 +37,9 @@ class DataSensor {
     }
 
     async save() {
-        const sql = `INSERT INTO sensor_history 
-        ( EnvTemp, EnvHumi, PumTemp, Flow, PH, Illu, StaPump, StaLight, StarDisch, StaCharge) 
-        VALUES ("${this.EnvTemp}", "${this.EnvHumi}", "${this.PumTemp}", "${this.Flow}", "${this.PH}", "${this.Illu}",
-         "${this.StaPump}", "${this.StaLight}", "${this.StarDisch}", "${this.StaCharge}")`;
+        const sql = `INSERT INTO sensor_history
+        ( EnvTemp, EnvHumi, EnvIllu, PH, Water) 
+        VALUES ("${this.EnvTemp}", "${this.EnvHumi}", "${this.EnvIllu}", "${this.PH}", "${this.Water}")`;
         await pool.execute(sql);
     }
 
@@ -55,33 +55,18 @@ class DataSensor {
         return this._EnvHumi;
     }
 
-    get PumTemp() {
-        return this._PumTemp;
-    }
-
-    get Flow() {
-        return this._Flow;
+    get EnvIllu() {
+        return this._EnvIllu;
     }
 
     get PH() {
         return this._PH;
     }
 
-    get Illu() {
-        return this._Illu;
+    get Water() {
+        return this._Water;
     }
 
-    get StaLight() {
-        return this._StaLight;
-    }
-
-    get StarDisch() {
-        return this._StarDisch;
-    }
-
-    get StaCharge() {
-        return this._StaCharge;
-    }
 
 
 
@@ -93,32 +78,16 @@ class DataSensor {
         return this._EnvHumi = EnvHumi;
     }
 
-    set PumTemp(PumTemp) {
-        this._PumTemp = PumTemp;
-    }
-
-    set Flow(Flow) {
-        this._Flow = Flow;
+    set EnvIllu(EnvIllu) {
+        this._EnvIllu = EnvIllu;
     }
 
     set PH(PH) {
         this._PH = PH;
     }
 
-    set Illu(Illu) {
-        this._Illu = Illu;
-    }
-
-    set StaPump(StaPump) {
-        this._StaPump = StaPump;
-    }
-
-    set StaLight(StaLight) {
-        this._StaLight = StaLight;
-    }
-
-    set StaCharge(StaCharge) {
-        this._StaCharge= StaCharge;
+    set Water(Water) {
+        this._Water = Water;
     }
 
     set registDt(registDt) {
