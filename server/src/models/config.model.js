@@ -55,6 +55,13 @@ class ConfigSensor {
         await pool.execute(sql);
     }
 
+    static async updateStatus(options) {
+        const sql = `UPDATE config SET
+            status = "${options.status}"
+            WHERE 1=1`;
+        await pool.execute(sql);
+    }
+
     get id() {
         return this._id;
     }

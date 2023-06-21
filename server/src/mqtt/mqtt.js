@@ -30,12 +30,13 @@ client.on('connect', function () {
         }
     })
 
-    client.subscribe('danghoanghieu/subDevice', function (err) {
+    client.subscribe('danghoanghieu/dataDevice', function (err) {
         console.log("Subscribed to Device topic");
         if (err) {
             console.log(err);
         }
     })
+
 })
 
 //Khai báo Subscribe Callback Handler (Khi nhận được dữ liệu từ các topic đã subscribe sẽ thực thi
@@ -63,7 +64,7 @@ const processing = async (topic, msg_str) => {
         const { EnvTemp, EnvHumi, EnvIllu, Water, PH } = data;
         var senser =  new  DataSensor(EnvTemp, EnvHumi, EnvIllu, Water, PH);
         senser.save();//{"EnvTemp":29, "EnvHumi":80, "EnvIllu":7, "PH":5, "Water":12}
-    } else if (topic == "danghoanghieu/subDevice") {
+    } else if (topic == "danghoanghieu/dataDevice") {
         ConfigSensor.updateDevice({...data, status:0});
     }
 };
@@ -83,7 +84,29 @@ const sendData = async (data) => {
         const resultConfig = await ConfigSensor.filter({});
         if(resultConfig != null & resultConfig[0].status == '1') {
             // publish to broker:
-            client.publish('danghoanghieu/control',  JSON.stringify(resultConfig[0]));
+            var sensorControl = {
+                "minTemp" : resultConfig[0].minTemp, 
+                "maxTemp" : resultConfig[0].maxTemp,
+                "minHumi" : resultConfig[0].minHumi, 
+                "maxHumi" : resultConfig[0].maxHumi,
+                "minWater" : resultConfig[0].minWater, 
+                "maxWater" : resultConfig[0].maxWater,
+                "minIllu" : resultConfig[0].minIllu, 
+                "maxIllu" : resultConfig[0].maxIllu,
+                "minPH" : resultConfig[0].minPH,
+                "maxPH" : resultConfig[0].maxPH
+            }
+            client.publish('danghoanghieu/sub',  JSON.stringify(sensorControl));
+
+            var deviceControl = {
+                "StaPump" : resultConfig[0].StaPump,
+                "StaLight" : resultConfig[0].StaLight,
+                "StarDisch" : resultConfig[0].StarDisch,
+                "StaCharge" : resultConfig[0].StaCharge
+            }
+            client.publish('danghoanghieu/subDevice',  JSON.stringify(deviceControl));
+
+            ConfigSensor.updateStatus({status: 0 });
         }
     } catch(err) {
         console.log(err);
