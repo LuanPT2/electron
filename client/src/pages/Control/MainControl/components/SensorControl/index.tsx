@@ -80,7 +80,6 @@ const SensorControl = () => {
 
   const onClickChangeConfig = () => {
     if (isEdit) {
-      setButtonText("Thay đổi");
       setModalTwoButton({ ...modalTwoButton, isShow: true });
     } else {
       setButtonText("Lưu");
@@ -325,12 +324,14 @@ const SensorControl = () => {
         handleSubmit={() => {
           setModalTwoButton({ ...modalTwoButton, isShow: false });
           dispatch(changeConfigSensor(sensorInfoState));
+          setButtonText("Thay đổi");
           setTimeout(() => {
             setIsEdit(!isEdit);
           }, 1000);
         }}
         handleClose={() => {
           setModalTwoButton({ ...modalTwoButton, isShow: false });
+          setButtonText("Thay đổi");
           setIsEdit(!isEdit);
         }}
         textBtnRight={modalTwoButton.textButtonRight}
