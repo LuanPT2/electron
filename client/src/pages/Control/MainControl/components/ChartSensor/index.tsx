@@ -93,8 +93,8 @@ const ChartSensor = () => {
             listDataChartInfo.lables,
             "Độ ẩm",
             listDataChartInfo.envHumis,
-            "rgb(0, 255, 0)",
-            "rgba(0, 255, 0, 0.5)"
+            "rgb(53, 162, 112)",
+            "rgba(53, 162, 112, 0.5)"
           )}
         />
       </div>
