@@ -9,8 +9,13 @@ import {
 import { useAppDispatch, useAppSelector } from "utils/hook";
 import ToggleSwitch from "components/ToggleSwitch";
 import IMAGES from "themes/images";
+import Modal from "components/Modal";
+import { ModalTwoButton } from "models/ModalType";
 
 const SensorControl = () => {
+  const [buttonText, setButtonText] = useState("Thay đổi");
+  const [isEdit, setIsEdit] = useState(false);
+
   const dispatch = useAppDispatch();
   const { sensorInfo } = useAppSelector((state) => state.sensorReducer);
   const [sensorInfoState, setSensorInfoState] = useState<SensorInfo>({
@@ -35,6 +40,15 @@ const SensorControl = () => {
     StaCharge: "",
   });
 
+  const [modalTwoButton, setModalTwoButton] = useState<ModalTwoButton>({
+    type: "",
+    title: "Xác Nhận Thay Đổi Cấu Hình",
+    content: "Bạn muốn thay đổi cấu hình?",
+    isShow: false,
+    textButtonLeft: "Không",
+    textButtonRight: "Có",
+  });
+
   useEffect(() => {
     dispatch(getDataSensor());
   }, []);
@@ -54,16 +68,24 @@ const SensorControl = () => {
 
   useEffect(() => {
     if (sensorInfo) {
-      setSensorInfoState(sensorInfo);
-      const interval = setInterval(() => {
-        dispatch(getDataSensor());
-      }, 5000);
-      return () => clearInterval(interval);
+      if (!isEdit) {
+        setSensorInfoState(sensorInfo);
+        const interval = setInterval(() => {
+          dispatch(getDataSensor());
+        }, 1000);
+        return () => clearInterval(interval);
+      }
     }
   }, [sensorInfo]);
 
   const onClickChangeConfig = () => {
-    dispatch(changeConfigSensor(sensorInfoState));
+    if (isEdit) {
+      setButtonText("Thay đổi");
+      setModalTwoButton({ ...modalTwoButton, isShow: true });
+    } else {
+      setButtonText("Lưu");
+    }
+    setIsEdit(!isEdit);
   };
 
   return (
@@ -291,9 +313,26 @@ const SensorControl = () => {
           onClick={onClickChangeConfig}
           customClass="btn--primary center button-changeconfig"
         >
-          Thay đổi cấu hình
+          {buttonText}
         </Button>
       </div>
+
+      <Modal
+        isOpen={modalTwoButton.isShow}
+        title={modalTwoButton.title}
+        handleSubmit={() => {
+          setModalTwoButton({ ...modalTwoButton, isShow: false });
+          dispatch(changeConfigSensor(sensorInfoState));
+        }}
+        handleClose={() =>
+          setModalTwoButton({ ...modalTwoButton, isShow: false })
+        }
+        textBtnRight={modalTwoButton.textButtonRight}
+        textBtnLeft={modalTwoButton.textButtonLeft}
+        isShowTwoBtn
+      >
+        {modalTwoButton.content}
+      </Modal>
     </div>
   );
 };
