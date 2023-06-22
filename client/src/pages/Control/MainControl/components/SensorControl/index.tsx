@@ -70,11 +70,11 @@ const SensorControl = () => {
     if (sensorInfo) {
       if (!isEdit) {
         setSensorInfoState(sensorInfo);
-        const interval = setInterval(() => {
-          dispatch(getDataSensor());
-        }, 1000);
-        return () => clearInterval(interval);
       }
+      const interval = setInterval(() => {
+        dispatch(getDataSensor());
+      }, 1000);
+      return () => clearInterval(interval);
     }
   }, [sensorInfo]);
 
@@ -84,13 +84,13 @@ const SensorControl = () => {
       setModalTwoButton({ ...modalTwoButton, isShow: true });
     } else {
       setButtonText("Lưu");
+      setIsEdit(!isEdit);
     }
-    setIsEdit(!isEdit);
   };
 
   return (
     <div className="sensor-control-page">
-      <div className="control">
+      <div className={"control " + (isEdit ? "" : "disabledbutton")}>
         <div className="row-device">
           <div className="col-type control-colum1">
             <p>Nhiệt độ</p>
@@ -311,7 +311,9 @@ const SensorControl = () => {
       <div className="center">
         <Button
           onClick={onClickChangeConfig}
-          customClass="btn--primary center button-changeconfig"
+          customClass={
+            "btn--primary center " + (isEdit ? "" : "button-changeconfig")
+          }
         >
           {buttonText}
         </Button>
@@ -323,10 +325,12 @@ const SensorControl = () => {
         handleSubmit={() => {
           setModalTwoButton({ ...modalTwoButton, isShow: false });
           dispatch(changeConfigSensor(sensorInfoState));
+          setIsEdit(!isEdit);
         }}
-        handleClose={() =>
-          setModalTwoButton({ ...modalTwoButton, isShow: false })
-        }
+        handleClose={() => {
+          setModalTwoButton({ ...modalTwoButton, isShow: false });
+          setIsEdit(!isEdit);
+        }}
         textBtnRight={modalTwoButton.textButtonRight}
         textBtnLeft={modalTwoButton.textButtonLeft}
         isShowTwoBtn

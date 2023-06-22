@@ -4,6 +4,11 @@
     border-radius: 20px;
     background-color: rgb(183, 226, 228);
 
+    .disabledbutton {
+        pointer-events: none;
+       //opacity: 1;
+    }
+
     .control {
         display: block
     }
@@ -40,9 +45,12 @@
     }
     
     .button-changeconfig {
-        width: auto;
+        background-color: #04AA6D !important;
     }
 
+    .btn--primary {
+        width: 200px;
+    }
     .control-devices {
         display: block;
         margin: auto;
