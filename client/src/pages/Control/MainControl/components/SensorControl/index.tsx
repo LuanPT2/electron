@@ -325,7 +325,9 @@ const SensorControl = () => {
         handleSubmit={() => {
           setModalTwoButton({ ...modalTwoButton, isShow: false });
           dispatch(changeConfigSensor(sensorInfoState));
-          setIsEdit(!isEdit);
+          setTimeout(() => {
+            setIsEdit(!isEdit);
+          }, 1000);
         }}
         handleClose={() => {
           setModalTwoButton({ ...modalTwoButton, isShow: false });
