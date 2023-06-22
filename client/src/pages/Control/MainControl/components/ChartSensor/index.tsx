@@ -105,8 +105,8 @@ const ChartSensor = () => {
             listDataChartInfo.lables,
             "Độ sáng",
             listDataChartInfo.envIllus,
-            "rgb(255, 255, 0)",
-            "rgba(255, 255, 0, 0.5)"
+            "rgb(255, 215, 0)",
+            "rgba(255, 215, 0, 0.5)"
           )}
         />
       </div>
