@@ -82,7 +82,7 @@ const ChartSensor = () => {
             "Nhiệt độ",
             listDataChartInfo.envTemps,
             "rgb(255, 0, 0)",
-            "rgba(255, 0, 0, 0.5)"
+            "rgba(255, 0, 0, 1)"
           )}
         />
       </div>
@@ -94,7 +94,7 @@ const ChartSensor = () => {
             "Độ ẩm",
             listDataChartInfo.envHumis,
             "rgb(53, 162, 112)",
-            "rgba(53, 162, 112, 0.5)"
+            "rgba(53, 162, 112, 1)"
           )}
         />
       </div>
@@ -106,7 +106,7 @@ const ChartSensor = () => {
             "Độ sáng",
             listDataChartInfo.envIllus,
             "rgb(255, 215, 0)",
-            "rgba(255, 215, 0, 0.5)"
+            "rgba(255, 215, 0, 1)"
           )}
         />
       </div>
@@ -118,7 +118,7 @@ const ChartSensor = () => {
             "PH",
             listDataChartInfo.pHs,
             "rgb(205, 133, 63)",
-            "rgba(205, 133, 63)"
+            "rgba(205, 133, 63, 1)"
           )}
         />
       </div>
@@ -130,7 +130,7 @@ const ChartSensor = () => {
             "Mực nước",
             listDataChartInfo.waters,
             "rgb(53, 162, 112)",
-            "rgba(53, 162, 235, 0.5)"
+            "rgba(53, 162, 112, 1)"
           )}
         />
       </div>
