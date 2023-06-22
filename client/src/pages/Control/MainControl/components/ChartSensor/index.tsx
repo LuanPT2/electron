@@ -54,15 +54,15 @@ const ChartSensor = () => {
     };
   };
 
-  const objectData = (labels, lineName, data) => {
+  const objectData = (labels, lineName, data, colorLine, backgroundColor) => {
     return {
       labels,
       datasets: [
         {
           label: lineName,
           data: data,
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
+          borderColor: colorLine,
+          backgroundColor: backgroundColor,
         },
       ],
     };
@@ -80,7 +80,9 @@ const ChartSensor = () => {
           data={objectData(
             listDataChartInfo.lables,
             "Nhiệt độ",
-            listDataChartInfo.envTemps
+            listDataChartInfo.envTemps,
+            "rgb(255, 0, 0)",
+            "rgba(255, 0, 0, 0.5)"
           )}
         />
       </div>
@@ -90,7 +92,9 @@ const ChartSensor = () => {
           data={objectData(
             listDataChartInfo.lables,
             "Độ ẩm",
-            listDataChartInfo.envHumis
+            listDataChartInfo.envHumis,
+            "rgb(0, 255, 0)",
+            "rgba(0, 255, 0, 0.5)"
           )}
         />
       </div>
@@ -100,7 +104,9 @@ const ChartSensor = () => {
           data={objectData(
             listDataChartInfo.lables,
             "Độ sáng",
-            listDataChartInfo.envIllus
+            listDataChartInfo.envIllus,
+            "rgb(255, 255, 0)",
+            "rgba(255, 255, 0, 0.5)"
           )}
         />
       </div>
@@ -110,7 +116,9 @@ const ChartSensor = () => {
           data={objectData(
             listDataChartInfo.lables,
             "PH",
-            listDataChartInfo.pHs
+            listDataChartInfo.pHs,
+            "rgb(205, 133, 63)",
+            "rgba(205, 133, 63)"
           )}
         />
       </div>
@@ -120,7 +128,9 @@ const ChartSensor = () => {
           data={objectData(
             listDataChartInfo.lables,
             "Mực nước",
-            listDataChartInfo.waters
+            listDataChartInfo.waters,
+            "rgb(53, 162, 112)",
+            "rgba(53, 162, 235, 0.5)"
           )}
         />
       </div>
