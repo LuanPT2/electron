@@ -1,5 +1,9 @@
 const IMAGES = {
   avarta: require("assets/images/avatar.jpg"),
+  divice_pump: require("assets/images/humidifier.png"),
+  divice_light: require("assets/images/lamp.png"),
+  divice_disch: require("assets/images/water-vector.png"),
+  divice_charge: require("assets/images/pump.png"),
   icon_search: require("assets/images/icon_search.svg").default,
   icon_circle_close: require("assets/images/icon_circle_close.svg").default,
   icon_close_modal: require("assets/images/icon_close_modal.svg").default,

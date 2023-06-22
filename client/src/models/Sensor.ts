@@ -24,10 +24,10 @@ export type SensorInfo = {
   PH: number;
   minPH: number;
   maxPH: number;
-  StaPump: number;
-  StaLight: number;
-  StarDisch: number;
-  StaCharge: number;
+  StaPump: string;
+  StaLight: string;
+  StarDisch: string;
+  StaCharge: string;
 };
 
 export type sensorInfoPayload = {
@@ -46,10 +46,10 @@ export type sensorInfoPayload = {
   PH: number;
   minPH: number;
   maxPH: number;
-  StaPump: number;
-  StaLight: number;
-  StarDisch: number;
-  StaCharge: number;
+  StaPump: string;
+  StaLight: string;
+  StarDisch: string;
+  StaCharge: string;
 };
 
 export type GetDataSensorSuccessPayload = {

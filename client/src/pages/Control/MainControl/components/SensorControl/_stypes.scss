@@ -42,4 +42,37 @@
     .button-changeconfig {
         width: auto;
     }
+
+    .control-devices {
+        display: block;
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        //background-color: aqua;
+        .block-device {
+            margin:5px 20px 5px 20px;
+            display: inline-block;
+            width: fit-content;
+            .image-device {
+                img {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 5px;
+                    background-color: rgb(251, 255, 255);
+                  }
+                width: fit-content;
+                margin-bottom: 10px;
+            }
+            .switch-device {
+                align-items: center;
+                margin: auto;
+                width: fit-content;
+                
+            }
+            .name-device {
+                text-align:  center;
+                margin: 10px;
+            }
+        }
+    }
 }

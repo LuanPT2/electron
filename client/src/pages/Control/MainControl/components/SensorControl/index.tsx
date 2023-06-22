@@ -7,6 +7,8 @@ import {
   changeConfigSensor,
 } from "pages/Control/redux/action/actionCreators";
 import { useAppDispatch, useAppSelector } from "utils/hook";
+import ToggleSwitch from "components/ToggleSwitch";
+import IMAGES from "themes/images";
 
 const SensorControl = () => {
   const dispatch = useAppDispatch();
@@ -27,10 +29,10 @@ const SensorControl = () => {
     PH: 0,
     minPH: 0,
     maxPH: 0,
-    StaPump: 0,
-    StaLight: 0,
-    StarDisch: 0,
-    StaCharge: 0,
+    StaPump: "",
+    StaLight: "",
+    StarDisch: "",
+    StaCharge: "",
   });
 
   useEffect(() => {
@@ -195,6 +197,92 @@ const SensorControl = () => {
                 );
               }}
             />
+          </div>
+        </div>
+        <div className="control-devices">
+          <div className="block-device">
+            <div className="image-device">
+              <img src={IMAGES.divice_pump} alt="" width={120} />
+            </div>
+            <div className="name-device">
+              <p>Phun Sương</p>
+            </div>
+            <div className="switch-device">
+              <ToggleSwitch
+                onChange={(e) => {
+                  setSensorInfoState({
+                    ...sensorInfoState,
+                    ["StaPump"]: e.target.checked == true ? "on" : "off",
+                  });
+                }}
+                id="1"
+                isChecked={sensorInfoState.StaPump === "on" ? true : false}
+                name="rememberMe"
+              />
+            </div>
+          </div>
+          <div className="block-device">
+            <div className="image-device">
+              <img src={IMAGES.divice_light} alt="" width={120} />
+            </div>
+            <div className="name-device">
+              <p>Đèn</p>
+            </div>
+            <div className="switch-device">
+              <ToggleSwitch
+                onChange={(e) => {
+                  setSensorInfoState({
+                    ...sensorInfoState,
+                    ["StaLight"]: e.target.checked == true ? "on" : "off",
+                  });
+                }}
+                id="2"
+                isChecked={sensorInfoState.StaLight === "on" ? true : false}
+                name="StaLight"
+              />
+            </div>
+          </div>
+          <div className="block-device">
+            <div className="image-device">
+              <img src={IMAGES.divice_disch} alt="" width={120} />
+            </div>
+            <div className="name-device">
+              <p>Xả nước</p>
+            </div>
+            <div className="switch-device">
+              <ToggleSwitch
+                onChange={(e) => {
+                  setSensorInfoState({
+                    ...sensorInfoState,
+                    ["StarDisch"]: e.target.checked == true ? "on" : "off",
+                  });
+                }}
+                id="3"
+                isChecked={sensorInfoState.StarDisch === "on" ? true : false}
+                name="StarDisch"
+              />
+            </div>
+          </div>
+          <div className="block-device">
+            <div className="image-device">
+              <img src={IMAGES.divice_charge} alt="" width={120} />
+            </div>
+            <div className="name-device">
+              <p>Bơm nước</p>
+            </div>
+            <div className="switch-device">
+              <ToggleSwitch
+                onChange={(e) => {
+                  setSensorInfoState({
+                    ...sensorInfoState,
+                    ["StaCharge"]: e.target.checked == true ? "on" : "off",
+                  });
+                }}
+                id="4"
+                isChecked={sensorInfoState.StaCharge === "on" ? true : false}
+                name="StaCharge"
+              />
+            </div>
           </div>
         </div>
       </div>

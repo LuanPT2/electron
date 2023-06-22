@@ -10,7 +10,7 @@ const SearchChart = () => {
 
   const [searchChartStateInfo, setSearchChartStateInfo] =
     useState<SearchRequestPayload>({
-      searchDate: "",
+      searchDate: moment(new Date(), "YYYY-MM-DD").format("YYYY-MM-DD"),
     });
 
   useEffect(() => {
@@ -24,6 +24,10 @@ const SearchChart = () => {
     });
   };
 
+  useEffect(() => {
+    dispatch(searchChartGetData(searchChartStateInfo));
+  }, []);
+
   return (
     <div className="search-chart searchbtn-form">
       <div className="date_time">
@@ -32,7 +36,7 @@ const SearchChart = () => {
           selected={
             searchChartStateInfo.searchDate
               ? moment(searchChartStateInfo.searchDate, "YYYY-MM-DD").toDate()
-              : ("" as unknown as Date)
+              : new Date()
           }
           onChange={(date: Date) => {
             handleOnchangeDateSearch(
