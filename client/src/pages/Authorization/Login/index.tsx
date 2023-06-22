@@ -1,27 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react'
-import LoginForm from './components/LoginForm';
-import { loginInfo, loginInfoError } from 'models/User';
-import Modal from 'components/Modal';
-import { ModalConfirm } from 'utils/types/commonType';
-import IMAGES from 'themes/images';
-import { REGEX } from 'constants/regex';
-import isEmpty from 'lodash.isempty'
-import { useAppDispatch, useAppSelector } from 'utils/hook';
-import { AppState } from 'store/rootReducers';
-import { loginRequest, resetTypeAuth } from 'pages/Authorization/redux/actionCreators';
+import React, { useEffect, useRef, useState } from "react";
+import LoginForm from "./components/LoginForm";
+import { loginInfo, loginInfoError } from "models/User";
+import Modal from "components/Modal";
+import { ModalConfirm } from "utils/types/commonType";
+import IMAGES from "themes/images";
+import { REGEX } from "constants/regex";
+import isEmpty from "lodash.isempty";
+import { useAppDispatch, useAppSelector } from "utils/hook";
+import { AppState } from "store/rootReducers";
+import {
+  loginRequest,
+  resetTypeAuth,
+} from "pages/Authorization/redux/actionCreators";
 
-const LOGIN_REQUEST_SUCCESS = 'LOGIN_REQUEST_SUCCESS';
-const LOGIN_REQUEST_FAILED = 'LOGIN_REQUEST_FAILED';
-
+const LOGIN_REQUEST_SUCCESS = "LOGIN_REQUEST_SUCCESS";
+const LOGIN_REQUEST_FAILED = "LOGIN_REQUEST_FAILED";
 
 const Login = () => {
   const dispatch = useAppDispatch();
 
-  const { type, message, isProcessing } = useAppSelector((state: AppState) => state.authReducer);
+  const { type, message, isProcessing } = useAppSelector(
+    (state: AppState) => state.authReducer
+  );
 
   const [loginInfo, setLoginInfo] = useState<loginInfo>({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     rememberMe: false,
   });
 
@@ -32,7 +36,7 @@ const Login = () => {
 
   const [modalError, setModalError] = useState<ModalConfirm>({
     isShow: false,
-    content: '',
+    content: "",
     title: "Thông báo",
   });
 
@@ -56,10 +60,10 @@ const Login = () => {
       setModalError({
         ...modalError,
         isShow: true,
-        content: "Tài khoảng hoặc mật khẩu không đúng.",
+        content: "Tài khoản hoặc mật khẩu không đúng.",
       });
     } else if (type === LOGIN_REQUEST_SUCCESS) {
-      localStorage.setItem('toggleMenu', String(true));
+      localStorage.setItem("toggleMenu", String(true));
     }
   }, [type]);
 
@@ -74,7 +78,7 @@ const Login = () => {
       setFieldError(error);
       setModalError({
         isShow: true,
-        content: "Lỗi Tài khoảng và mật khẩu là bắt buộc",
+        content: "Lỗi Tài khoản và mật khẩu là bắt buộc",
       });
     } else {
       dispatch(loginRequest({ username, password: password, rememberMe }));
@@ -94,16 +98,19 @@ const Login = () => {
     }
   };
 
-  const handlePressInput = (e: React.KeyboardEvent<HTMLInputElement>, name: string) => {
+  const handlePressInput = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    name: string
+  ) => {
     switch (name) {
-      case 'username':
-        if (e.key === 'Enter') {
+      case "username":
+        if (e.key === "Enter") {
           passwordRef?.current?.focus();
         }
         break;
 
-      case 'password':
-        if (e.key === 'Enter') {
+      case "password":
+        if (e.key === "Enter") {
           handleClickLogin();
         }
         break;
@@ -129,7 +136,7 @@ const Login = () => {
       />
       <Modal
         isOpen={modalError?.isShow}
-        title='Thông Báo'
+        title="Thông Báo"
         handleSubmit={() => {
           setModalError({
             ...modalError,

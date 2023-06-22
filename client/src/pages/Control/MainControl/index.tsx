@@ -6,7 +6,7 @@ const MainControl = () => {
   return (
     <div className="main-control-page">
       <div className=" control-title">
-        <h1 className="center">Hệ Thông Giám Sát Thủy Canh</h1>
+        <h1 className="center">Hệ Thống Giám Sát Thủy Canh</h1>
       </div>
       <SensorControl />
       <ChartSensor />
