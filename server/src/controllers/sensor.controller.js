@@ -65,8 +65,8 @@ const getDataSensors = async (req, res) => {
 
 const changeConfigSensor = async (req, res) => {
     try {
-        await ConfigSensor.updateSensor({...req.body.payload, status:0});
-        await ConfigSensor.updateDevice({...req.body.payload, status:0});
+        await ConfigSensor.updateSensor({...req.body.payload, status:1});
+        await ConfigSensor.updateDevice({...req.body.payload, status:1});
         return res.status(202).send({
             statusCode: 202,
             statusMessage: 'Accepted',

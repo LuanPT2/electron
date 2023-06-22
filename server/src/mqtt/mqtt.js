@@ -83,6 +83,7 @@ const sendData = async (data) => {
     try {
         const resultConfig = await ConfigSensor.filter({});
         if(resultConfig != null & resultConfig[0].status == '1') {
+            console.log("Send data sensor:" + JSON.stringify(resultConfig[0]));
             // publish to broker:
             var sensorControl = {
                 "minTemp" : resultConfig[0].minTemp, 
