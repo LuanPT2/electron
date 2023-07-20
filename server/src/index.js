@@ -28,4 +28,5 @@ app.get('/socket', function(request, response){
 const port = process.env.PORT;
 app.listen(port, () => console.log(`App is running in PORT: ${port}`));
 
-var mqtt = require('./mqtt/mqtt')
+var mqtt = require('./mqtt/mqtt');
+var redis = require('./redis/redis');

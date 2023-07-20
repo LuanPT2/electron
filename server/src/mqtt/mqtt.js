@@ -9,6 +9,7 @@ var options = {
         username: 'danghoanghieu',
         password: '2D2FF66884174835',
     };
+
 //Kết nối đến MQTT Broker với tham số biến option đã khai báo
 var client = mqtt.connect('ws://ngoinhaiot.com', options)
 
